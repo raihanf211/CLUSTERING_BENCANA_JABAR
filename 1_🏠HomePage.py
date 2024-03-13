@@ -159,10 +159,10 @@ with col[0]:
     st.metric(label="Total KABUPATEN", value=total_DESA_1)
 
 with col[1]:
-    with st.expander("KABUPATEN MAP VIEW & ANALYTICS"):
+    with st.container(border=True):
         m = add_google_maps(m)
         m.add_child(folium.LayerControl(collapsed=False))
-        folium_static(m, width=750, height=450)
+        folium_static(m, width=700, height=450)
 
 with col[2]:
     df_population_sorted = df.sort_values(by="JUMLAH_LONGSOR", ascending=False)
