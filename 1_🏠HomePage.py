@@ -19,7 +19,7 @@ with open('style.css')as f:
 
 
 # Aplikasi Streamlit
-st.title('BENCANA')
+st.title('BENCANA GANG MAWAR')
 
 # Load your DataFrame from DATA_JABAR.csv
 file_path = 'DATA_JABAR.csv'
