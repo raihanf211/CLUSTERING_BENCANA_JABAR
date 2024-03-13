@@ -26,6 +26,17 @@ def ahc_clustering(data, n_clusters, selected_features, linkage_method):
     features = data[selected_features + ['LATITUDE', 'LONGITUDE']]
     clusterer = AgglomerativeClustering(n_clusters=n_clusters, linkage=linkage_method)
     data['cluster'] = clusterer.fit_predict(features)
+
+    # Calculate centroid for each cluster
+    centroids = data.groupby('cluster')[['JUMLAH_LONGSOR']].mean()
+
+    # Define threshold values for density categories (adjust these based on your analysis)
+    threshold_low = 20  # Example threshold for "not dense"
+    threshold_high = 50  # Example threshold for "dense"
+
+    # Add Density Category column based on centroid values
+    data['Landslide Category'] = data['cluster'].map(lambda cluster: 'Tingkat Rawan Rendah' if centroids.loc[cluster].mean() < threshold_low else ('Tingkat Rawan Sedang' if centroids.loc[cluster].mean() < threshold_high else 'Tingkat Rawan Tinggi'))
+    
     return data
 
 # Function to add Google Maps to Folium map
@@ -59,7 +70,14 @@ def create_marker_map(df_clustered):
                 <li class="list-group-item">Cluster Number: {row['cluster']}</li>
                 <li class="list-group-item">KABUPATEN: {row['KABUPATEN']}</li>
                 <li class="list-group-item">TAHUN: {row['TAHUN']}</li>
-                <!-- Add other relevant information here -->
+                <li class="list-group-item">JUMLAH_LONGSOR: {row['JUMLAH_LONGSOR']}</li>
+                <li class="list-group-item">JIWA_TERDAMPAK: {row['JIWA_TERDAMPAK']}</li>
+                <li class="list-group-item">JIWA_MENINGGAL: {row['JIWA_MENINGGAL']}</li>
+                <li class="list-group-item">RUSAK_TERDAMPAK: {row['RUSAK_TERDAMPAK']}</li>
+                <li class="list-group-item">RUSAK_RINGAN: {row['RUSAK_RINGAN']}</li>
+                <li class="list-group-item">RUSAK_SEDANG: {row['RUSAK_SEDANG']}</li>
+                <li class="list-group-item">RUSAK_BERAT: {row['RUSAK_BERAT']}</li>
+                <li class="list-group-item">TERTIMBUN: {row['TERTIMBUN']}</li>
             </ul>
         </div>
         """
@@ -118,9 +136,13 @@ def ahc_page():
     with tab1:
         # Display metrics for each cluster
         for cluster_num in range(num_clusters):
+
+            landslide_category = df_clustered.loc[df_clustered['cluster'] == cluster_num, 'Landslide Category'].iloc[0]
+
+
             cluster_data = df_clustered[df_clustered['cluster'] == cluster_num][["KABUPATEN", "cluster"]]
 
-            with st.expander(f"Cluster {cluster_num + 1} Data Table", expanded=True):
+            with st.expander(f"Cluster {cluster_num + 1} Data Table - {landslide_category}", expanded=True):
                 st.dataframe(cluster_data,
                             column_order=("KABUPATEN", "cluster"),
                             hide_index=True,
@@ -140,16 +162,25 @@ def ahc_page():
             folium_static(folium_map, width=1240, height=600)
 
         # Graphs
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         with col1:
-            # Bar chart
-            st.bar_chart(df_clustered.groupby('cluster').size(), use_container_width=True)
+            with st.container(border=True):
+                # Bar chart
+                st.bar_chart(df_clustered.groupby('cluster').size(), use_container_width=True)
 
         with col2:
-            # Pie chart
-            st.write("Cluster Distribution:")
-            st.plotly_chart(px.pie(df_clustered, names='cluster', title='Cluster Distribution'), use_container_width=True)
+            with st.container(border=True):
+                # Pie chart
+                st.write("Cluster Distribution:")
+                st.plotly_chart(px.pie(df_clustered, names='cluster', title='Cluster Distribution'), use_container_width=True)
 
+        with col3:
+            with st.expander("⬇ SCATTER PLOT:"):
+                    st.write("Scatter Plot:")
+            
+                    # Assuming 'LATITUDE' and 'LONGITUDE' are the columns you want to use for the scatter plot
+                    scatter_fig = px.scatter(st.session_state.df_clustered, x='LATITUDE', y='LONGITUDE', color='cluster', title='Scatter Plot')
+                    st.plotly_chart(scatter_fig, use_container_width=True)
 
         with st.expander('Informasi', expanded=True):
             st.write('''
