@@ -19,7 +19,7 @@ with open('style.css')as f:
 
 
 # Aplikasi Streamlit
-st.title('BENCANA GANG MAWAR')
+st.title('KONTOL')
 
 # Load your DataFrame from DATA_JABAR.csv
 file_path = 'DATA_JABAR.csv'
@@ -162,7 +162,7 @@ with col[1]:
     with st.container(border=True):
         m = add_google_maps(m)
         m.add_child(folium.LayerControl(collapsed=False))
-        folium_static(m, width=700, height=400)
+        folium_static(m, width=450, height=450)
 
 with col[2]:
     df_population_sorted = df.sort_values(by="JUMLAH_LONGSOR", ascending=False)
