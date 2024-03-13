@@ -162,7 +162,7 @@ with col[1]:
     with st.container(border=True):
         m = add_google_maps(m)
         m.add_child(folium.LayerControl(collapsed=False))
-        folium_static(m, width=600, height=350)
+        folium_static(m, width=650, height=350)
 
 with col[2]:
     df_population_sorted = df.sort_values(by="JUMLAH_LONGSOR", ascending=False)
