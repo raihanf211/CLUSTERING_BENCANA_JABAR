@@ -26,6 +26,18 @@ def kmeans_clustering(data, num_clusters, selected_year):
     kmeans = KMeans(n_clusters=num_clusters, random_state=42)
     data['cluster'] = kmeans.fit_predict(features)
     
+    # Calculate centroid for each cluster
+    centroids = data.groupby('cluster')[['JUMLAH_LONGSOR']].mean()
+
+
+    # Define threshold values for density categories (adjust these based on your analysis)
+    threshold_low = 20  # Example threshold for "not dense"
+    threshold_high = 50  # Example threshold for "dense"
+
+    # Add Density Category column based on centroid values
+    data['Landslide Category'] = data['cluster'].map(lambda cluster: 'Tingkat Rawan Rendah' if centroids.loc[cluster].mean() < threshold_low else ('Tingkat Rawan Sedang' if centroids.loc[cluster].mean() < threshold_high else 'Tingkat Rawan Tinggi'))
+    
+
     # Calculate Silhouette Score
     silhouette_avg = silhouette_score(features, data['cluster'])
     
@@ -116,9 +128,13 @@ def kmeans_page():
     with tab1:
         # Display metrics for each cluster
         for cluster_num in range(num_clusters):
+            
+            landslide_category = df_clustered.loc[df_clustered['cluster'] == cluster_num, 'Landslide Category'].iloc[0]
+
+
             cluster_data = df_clustered[df_clustered['cluster'] == cluster_num][["KABUPATEN", "cluster"]]
 
-            with st.expander(f"Cluster {cluster_num + 1} Data Table", expanded=True):
+            with st.expander(f"Cluster {cluster_num + 1} Data Table - {landslide_category}", expanded=True):
                 st.dataframe(cluster_data,
                              column_order=("KABUPATEN", "cluster"),
                              hide_index=True,
@@ -137,27 +153,27 @@ def kmeans_page():
             folium_static(folium_map, width=1240, height=600)
 
          # Graphs
-        col1, col2 = st.columns(2)
+        col1, col2,col3 = st.columns(3)
         with col1:
-            fig2 = go.Figure(
-                data=[go.Bar(x=df_clustered['cluster'], y=df_clustered['JUMLAH_LONGSOR'])],
-                layout=go.Layout(
-                    title=go.layout.Title(text=f"Population Distribution by Cluster for JUMLAH_LONGSOR"),
-                    plot_bgcolor='rgba(0, 0, 0, 0)',  # Set plot background color to transparent
-                    paper_bgcolor='rgba(0, 0, 0, 0)',  # Set paper background color to transparent
-                    xaxis=dict(showgrid=True, gridcolor='#cecdcd'),  # Show x-axis grid and set its color
-                    yaxis=dict(showgrid=True, gridcolor='#cecdcd'),  # Show y-axis grid and set its color
-                    font=dict(color='#cecdcd'),  # Set text color to black
-                )
-            )
-            st.write(fig2)
+            with st.expander("⬇ HISTOGRAM:"):
+                # Bar chart
+                st.bar_chart(df_clustered.groupby('cluster').size(), use_container_width=True)
 
         with col2:
-            # Create a donut chart
-            fig = px.pie(df_clustered, names='cluster', title='Cluster Distribution')
-            fig.update_traces(hole=0.4)  # Set the size of the hole in the middle for a donut chart
-            fig.update_layout(width=800)
-            st.write(fig)
+            with st.expander("⬇ PIE CHART:"):
+                # Create a donut chart
+                fig = px.pie(df_clustered, names='cluster', title='Cluster Distribution')
+                fig.update_traces(hole=0.4)  # Set the size of the hole in the middle for a donut chart
+                fig.update_layout(width=350)
+                st.write(fig)
+
+        with col3:
+            with st.expander("⬇ SCATTER PLOT:"):
+                    st.write("Scatter Plot:")
+            
+                    # Assuming 'LATITUDE' and 'LONGITUDE' are the columns you want to use for the scatter plot
+                    scatter_fig = px.scatter(st.session_state.df_clustered, x='LATITUDE', y='LONGITUDE', color='cluster', title='Scatter Plot')
+                    st.plotly_chart(scatter_fig, use_container_width=True)
 
         with st.expander('Informasi', expanded=True):
             st.write('''
