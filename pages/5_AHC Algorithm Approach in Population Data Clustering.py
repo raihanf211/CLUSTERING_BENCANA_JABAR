@@ -13,7 +13,7 @@ from folium import plugins
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Load the dataset
-df = pd.read_csv("DATA_JABAR.csv")
+df = pd.read_csv("UPDATE-Selection-Dataset_Longsor 2021 - 2023 - PROV JABAR.csv")
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="Dashboard", page_icon="📈", layout="wide")
