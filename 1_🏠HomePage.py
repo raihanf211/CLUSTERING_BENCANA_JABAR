@@ -22,7 +22,7 @@ with open('style.css')as f:
 st.title('ANALISIS BENCANA LONGSOR JAWA BARAT')
 
 # Load your DataFrame from DATA_JABAR.csv
-file_path = 'DATA_JABAR.csv'
+file_path = 'UPDATE-Selection-Dataset_Longsor 2021 - 2023 - PROV JABAR.csv'
 df = pd.read_csv(file_path)
 
 # Sidebar for selecting the year
