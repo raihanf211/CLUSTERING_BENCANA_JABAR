@@ -53,7 +53,7 @@ st.markdown(
 </style>
 """, unsafe_allow_html=True)
 # Read data
-df = pd.read_csv("DATA_JABAR.csv")
+df = pd.read_csv("Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv")
 
 # Select features for clustering
 features_ahc = df[
