@@ -123,7 +123,7 @@ def kmeans_page():
     num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=3)
 
     # Load data from the home page
-    data_from_homepage = load_data('DATA_JABAR.csv')  # Replace with your actual data file path
+    data_from_homepage = load_data('Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv')  # Replace with your actual data file path
 
     # Perform KMeans clustering
     df_clustered, elbow_data = kmeans_clustering(data_from_homepage, num_clusters)
