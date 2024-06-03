@@ -10,7 +10,7 @@ import plotly_express as px
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Load the dataset
-df = pd.read_csv("Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv")
+df = pd.read_csv("UPDATE-Selection-Dataset_Longsor 2021 - 2023 - PROV JABAR.csv")
 
 #navicon and header
 st.set_page_config(page_title="Dashboard", page_icon="📈", layout="wide")  
