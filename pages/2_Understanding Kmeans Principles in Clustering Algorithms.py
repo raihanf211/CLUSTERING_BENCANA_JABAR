@@ -10,7 +10,7 @@ import plotly_express as px
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Load the dataset
-df = pd.read_csv("UPDATE-Selection-Dataset_Longsor 2021 - 2023 - PROV JABAR.csv")
+df = pd.read_csv("Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv")
 
 #navicon and header
 st.set_page_config(page_title="Dashboard", page_icon="📈", layout="wide")  
@@ -47,7 +47,7 @@ st.markdown(
 )
 
 # Pilih fitur yang ingin digunakan untuk klasterisasi
-features_kmeans = df[['KABUPATEN', 'TAHUN', 'JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT', 'TERTIMBUN', 'LATITUDE', 'LONGITUDE']]
+features_kmeans = df[['KABUPATEN', 'JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT', 'TERTIMBUN', 'LATITUDE', 'LONGITUDE']]
 
 # Sample DataFrame
 df_sample = df.sample(n=10)  # Ambil sampel 10 desa
