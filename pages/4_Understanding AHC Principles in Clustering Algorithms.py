@@ -328,7 +328,7 @@ silhouette_df = pd.DataFrame({
 
 c1,c2 = st.columns(2)
 with c1:
-    with st.expander("⬇ PERBANDINGAN METODE SINGLE, COMPLETE DAN AVERAGE DENGAN Cophenetic Correlation Coefficient"):
+    with st.expander("⬇ PERBANDINGAN METODE SINGLE, COMPLETE DAN AVERAGE DENGAN COPHENETIC CORRELATION COEFFICIENT"):
         # Membuat plot perbandingan CCC
         fig_ccc = px.bar(ccc_comparison_df, x='Metode', y='CCC', 
                         title='Perbandingan Cophenetic Correlation Coefficient (CCC)',
