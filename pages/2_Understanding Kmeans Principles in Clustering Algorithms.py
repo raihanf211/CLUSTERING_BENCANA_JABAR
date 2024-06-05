@@ -48,7 +48,7 @@ with st.expander("⬇ Berikut adalah Rumus SSE (Sum of Squared Errors) :"):
      st.write("di mana:  𝑘 adalah jumlah klaster yang diuji,")
      st.write("𝑛 adalah jumlah total sampel data,")
      st.write("𝑥𝑖𝑗 adalah sampel data ke-𝑗 dalam klaster ke-𝑖,,")
-     st.write("𝑐𝑖 adalah centroid dari klaster ke-𝑖,)
+     st.write("𝑐𝑖 adalah centroid dari klaster ke-𝑖,")
      st.write("∣∣𝑥𝑖𝑗−𝑐𝑖∣∣2 adalah jarak kuadrat antara sampel data 𝑥𝑖𝑗 dan centroid klaster 𝑐𝑖.")
 
 
