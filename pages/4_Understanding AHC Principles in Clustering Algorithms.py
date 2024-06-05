@@ -258,8 +258,9 @@ with st.expander("⬇ LINKAGE INFORMATION"):
 # Assuming X_ahc is already defined
 # Your clustering and silhouette score calculation code
 silhouette_scores_single = []
-silhouette_scores_average = []
 silhouette_scores_complete = []
+silhouette_scores_average = []
+
 n_clusters_range = range(2, 11)
 
 for n_clusters in n_clusters_range:
@@ -269,11 +270,6 @@ for n_clusters in n_clusters_range:
     silhouette_avg_single = silhouette_score(X_ahc, cluster_labels_single)
     silhouette_scores_single.append(silhouette_avg_single)
     
-    # Metode 'average'
-    clusterer_average = AgglomerativeClustering(n_clusters=n_clusters, linkage='average')
-    cluster_labels_average = clusterer_average.fit_predict(X_ahc)
-    silhouette_avg_average = silhouette_score(X_ahc, cluster_labels_average)
-    silhouette_scores_average.append(silhouette_avg_average)
     
     # Metode 'complete'
     clusterer_complete = AgglomerativeClustering(n_clusters=n_clusters, linkage='complete')
@@ -281,10 +277,16 @@ for n_clusters in n_clusters_range:
     silhouette_avg_complete = silhouette_score(X_ahc, cluster_labels_complete)
     silhouette_scores_complete.append(silhouette_avg_complete)
 
+     # Metode 'average'
+    clusterer_average = AgglomerativeClustering(n_clusters=n_clusters, linkage='average')
+    cluster_labels_average = clusterer_average.fit_predict(X_ahc)
+    silhouette_avg_average = silhouette_score(X_ahc, cluster_labels_average)
+    silhouette_scores_average.append(silhouette_avg_average)
+
 # Create dataframes for silhouette scores
 silhouette_scores_single_df = pd.DataFrame({'Number of Clusters': n_clusters_range, 'Silhouette Score': silhouette_scores_single})
-silhouette_scores_average_df = pd.DataFrame({'Number of Clusters': n_clusters_range, 'Silhouette Score': silhouette_scores_average})
 silhouette_scores_complete_df = pd.DataFrame({'Number of Clusters': n_clusters_range, 'Silhouette Score': silhouette_scores_complete})
+silhouette_scores_average_df = pd.DataFrame({'Number of Clusters': n_clusters_range, 'Silhouette Score': silhouette_scores_average})
 
 # Display the line charts and optimal cluster information using Plotly Express
 c1, c2, c3 = st.columns(3)
@@ -295,20 +297,19 @@ with c1:
         st.table(silhouette_scores_single_df)
 
 with c2:
+     with st.expander("⬇ SILLHOUTE SCORE COMPLETE"):
+        st.write("Silhouette Scores for Complete Linkage:")
+        st.table(silhouette_scores_complete_df)
+
+with c3:
     with st.expander("⬇ SILLHOUTE SCORE AVERAGE"):
         st.write("Silhouette Scores for Average Linkage:")
         st.table(silhouette_scores_average_df)
 
-with c3:
-    with st.expander("⬇ SILLHOUTE SCORE COMPLETE"):
-        st.write("Silhouette Scores for Complete Linkage:")
-        st.table(silhouette_scores_complete_df)
-        
-
 # Membuat DataFrame untuk perbandingan CCC
 ccc_comparison = {
-    'Metode': ['Single', 'Average', 'Complete'],
-    'CCC': [ccc_single, ccc_average, ccc_complete]
+    'Metode': ['Single', 'Complete', 'Average'],
+    'CCC': [ccc_single, ccc_complete, ccc_average ]
 }
 ccc_comparison_df = pd.DataFrame(ccc_comparison)
 
@@ -316,8 +317,9 @@ ccc_comparison_df = pd.DataFrame(ccc_comparison)
 silhouette_df = pd.DataFrame({
     'Jumlah Cluster': list(n_clusters_range),
     'Single Linkage': silhouette_scores_single,
-    'Average Linkage': silhouette_scores_average,
-    'Complete Linkage': silhouette_scores_complete
+    'Complete Linkage': silhouette_scores_complete,
+    'Average Linkage': silhouette_scores_average
+   
 })
 
 c1,c2 = st.columns(2)
