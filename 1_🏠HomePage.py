@@ -172,7 +172,7 @@ with col[0]:
 
 
 with col[1]:
-    with st.container(border=True):
+    with st.expander(border=True):
         m = add_google_maps(m)
         m.add_child(folium.LayerControl(collapsed=False))
         folium_static(m, width=700, height=450)
