@@ -52,9 +52,9 @@ st.markdown(
 
 with st.expander("⬇ Berikut rumus perhitungan jarak Euclidean :"):
      st.latex(r"d(x, y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \ldots + (x_n - y_n)^2}")
-     st.writer("di mana:")
-     st.writer("x1,x2,…,x n adalah koordinat titik 𝑥 dalam dimensi ke-𝑛.")
-     st.writer("y1,y2,…,y n adalah koordinat titik 𝑦 dalam dimensi ke-𝑛.")
+     st.write("di mana:")
+     st.write("x1,x2,…,x n adalah koordinat titik 𝑥 dalam dimensi ke-𝑛.")
+     st.write("y1,y2,…,y n adalah koordinat titik 𝑦 dalam dimensi ke-𝑛.")
     
 # Read data
 df = pd.read_csv("Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv")
