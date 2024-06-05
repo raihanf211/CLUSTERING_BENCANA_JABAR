@@ -250,8 +250,8 @@ with c3:
         st.write(f"Jumlah klaster optimal untuk metode linkage Average: {len(set(labels_average))}")
 
 with st.expander("⬇ LINKAGE INFORMATION"):
-    st.write("Complete Linkage: Menggunakan jarak maksimum antara anggota klaster.")
     st.write("Single Linkage: Menggunakan jarak minimum antara anggota klaster.")
+    st.write("Complete Linkage: Menggunakan jarak maksimum antara anggota klaster.")
     st.write("Average Linkage: Menggunakan rata-rata jarak antara semua pasangan anggota klaster.")
    
 
