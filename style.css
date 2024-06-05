@@ -1,5 +1,11 @@
 /* style.css */
 
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+}
+
 [data-testid="block-container"] {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -67,4 +73,18 @@
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+}
+
+/* Edit warna latar belakang dropdown pada option_menu */
+.option_menu_container {
+  color: linear-gradient(#249ac9)/* Ganti dengan warna yang diinginkan */
+}
+
+[data-testid=stSidebar] .st-dq {
+  background-color: black;  /* Ganti dengan warna yang diinginkan */
+  color: white;  /* Warna teks pada opsi menu */
+}
+
+.centered-title {
+  text-align: center;
 }
