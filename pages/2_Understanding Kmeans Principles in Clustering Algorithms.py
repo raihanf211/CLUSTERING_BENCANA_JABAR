@@ -106,10 +106,9 @@ with c3:
 # Membuat ekspander untuk menampilkan korelasi
 with st.expander("⬇ EKSPLORASI VARIABEL:"):
     st.subheader("Korelasi antara Variabel")
-    st.write("Melihat matriks korelasi antara variabel dalam dataset.")
     
     # Ganti df_selection dengan dataframe yang ingin Anda gunakan
-    selected_features = ['JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT']
+    selected_features = ['JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT','TERTIMBUN']
     
     # Hitung matriks korelasi
     correlation_matrix = df[selected_features].corr()
@@ -125,15 +124,15 @@ with st.expander("⬇ EKSPLORASI VARIABEL:"):
     # Show the plot
     st.plotly_chart(fig)
 
-    st.write("Visualisasi ini memberikan gambaran distribusi univariat dari setiap variabel dalam dataset. Histogram menunjukkan sebaran nilai-nilai di setiap variabel, dan kernel density estimation (KDE) memberikan perkiraan kurva distribusi.")
+    st.write("Visualisasi ini memberikan representasi visual dari data dalam bentuk matriks, di mana intensitas warna pada setiap sel matriks menggambarkan nilai variabel yang bersangkutan, memudahkan identifikasi pola, keterkaitan, atau perbedaan dalam data.")
 
 # checking null value
 with st.expander("⬇ NULL VALUES, TENDENCY & VARIABLE DISPERSION"):
     a1, a2 = st.columns(2)
-    a1.write("Jumlah nilai yang hilang (NaN atau None) di setiap kolom dalam DataFrame")
+    a1.write("Jumlah nilai yang tidak ada (NaN atau None) dalam setiap kolom DataFrame.")
     a1.dataframe(df.isnull().sum(), use_container_width=True)
 
-    a2.write("Insight ke dalam kecenderungan sentral, dispersi, dan distribusi data.")
+    a2.write("Wawasan tentang tendensi pusat, dispersi, dan distribusi data.")
     a2.dataframe(df.describe().T, use_container_width=True)
 
 # Pilih kolom numerik untuk klasterisasi KMeans
@@ -202,7 +201,7 @@ with c3:
 # Display the scatter plot using Plotly Express
 with st.expander("⬇ CLUSTER VISUALIZATION"):
     fig = px.scatter(df, x='LONGITUDE', y='LATITUDE', color='Cluster',
-                 title="Clusters of Customers", labels={'LONGITUDE': 'LONGITUDE', 'LATITUDE': 'LATITUDE'},
+                 title="Clusters of Regionss", labels={'LONGITUDE': 'LONGITUDE', 'LATITUDE': 'LATITUDE'},
                  color_continuous_scale='viridis', size_max=10)
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
