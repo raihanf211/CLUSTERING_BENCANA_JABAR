@@ -221,9 +221,9 @@ def kmeans_page():
         with col[1]:
             st.write(silhouette_scores_df)
             
-        best_silhouette_score = silhouette_scores_df['silhouette_score'].max()
-        best_cluster_number = silhouette_scores_df.loc[silhouette_scores_df['silhouette_score'] == best_silhouette_score, 'num_clusters'].values[0]
-        
+            best_silhouette_score = silhouette_scores_df['silhouette_score'].max()
+            best_cluster_number = silhouette_scores_df.loc[silhouette_scores_df['silhouette_score'] == best_silhouette_score, 'num_clusters'].values[0]
+            
         with st.expander('Informasi', expanded=True):
             st.write('''
             - Data: [Sumber Data](link_sumber_data_anda).
