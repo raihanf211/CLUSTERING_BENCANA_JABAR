@@ -23,7 +23,7 @@ st.set_page_config(
 with open('style.css') as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.header("UNDERSTANDING AGGLOMERATIVE HIERARCHICAL CLUSTERING (AHC)")
+st.header("ALGORITMA AGGLOMERATIVE HIERARCHICAL CLUSTERING (AHC)")
 
 st.latex(r"d(x, y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \ldots + (x_n - y_n)^2}")
 
@@ -36,13 +36,10 @@ st.markdown(
 <div class="card mb-3">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title" style="color:#007710;"><strong>⏱ PEMAHAMAN AGGLOMERATIVE HIERARCHICAL CLUSTERING (AHC)</strong></h3>
-            <p class="card-text">Agglomerative Hierarchical Clustering (AHC) adalah algoritma klastering hirarkis yang membangun hirarki klaster. Berbeda dengan K-Means, AHC tidak memerlukan jumlah klaster sebagai input. Ini dimulai dengan setiap titik data sebagai klaster singleton dan secara iteratif menggabungkan pasangan klaster terdekat hingga hanya satu klaster yang tersisa.</p>
-            <p class="card-text">Dalam konteks AHC, dibuat matriks linkage (Z) untuk merepresentasikan proses penggabungan. Matriks ini berisi informasi tentang klaster mana yang digabungkan pada setiap langkah, jarak antara mereka, dan jumlah titik dalam klaster yang baru terbentuk.</p>
-            <p class="card-text">AHC menggunakan berbagai metode linkage seperti 'single', 'complete', 'average', dll. Pemilihan metode linkage mempengaruhi bagaimana jarak antara klaster dihitung. Metode 'single', sebagai contoh, meminimalkan varians dalam setiap klaster.</p>
-            <p class="card-text">Salah satu keunggulan AHC adalah menghasilkan dendrogram, diagram berbentuk pohon yang menggambarkan susunan klaster. Ini dapat berguna untuk memahami struktur hierarkis data.</p>
-            <p class="card-text">Keputusan tentang jumlah klaster dibuat dengan menetapkan ambang batas jarak atau dengan memotong dendrogram pada ketinggian tertentu. Fleksibilitas ini memungkinkan AHC beradaptasi dengan berbagai struktur dalam data.</p>
-        </div>
+            <h3 class="card-title" style="color:#007710;"><strong> PEMAHAMAN </strong></h3>
+            <p class="card-text">Agglomerative Hierarchical Clustering (AHC) adalah algoritma klasterisasi hierarkis yang secara bertahap menggabungkan klaster terdekat tanpa memerlukan jumlah klaster awal.</p>
+            <p class="card-text">AHC menggunakan matriks linkage (Z) untuk merepresentasikan penggabungan klaster, dan metode linkage seperti 'single', 'complete', 'average', mempengaruhi perhitungan jarak antara klaster.</p>
+            <p class="card-text">Keunggulan AHC adalah kemampuannya menghasilkan dendrogram, yang memudahkan pemahaman struktur hierarkis data. Jumlah klaster dapat ditentukan dengan menetapkan ambang batas jarak atau memotong dendrogram pada ketinggian tertentu, memberikan fleksibilitas terhadap struktur data yang beragam.</p>
     </div>
 </div>
 <style>
@@ -77,12 +74,11 @@ linkage_matrix = linkage(features_ahc, method='single')
 # Ekspander untuk menampilkan data
 with st.expander("⬇ DATA UNDERSTANDING FOR AGGLOMERATIVE HIERARCHICAL CLUSTERING :"):
     # Display summary statistics
-    st.write("Pendekatan statistik dari data populasi memberikan wawasan mendalam tentang karakteristik keseluruhan dari dataset. Dengan menganalisis statistik deskriptif, seperti yang ditampilkan di atas, kita dapat melihat gambaran umum tentang bagaimana nilai-nilai tersebar, tendensi sentral, dan sebaran data.")
+    st.write("Summary statistic adalah ringkasan statistik deskriptif yang mencakup ukuran-ukuran seperti mean, median, mode, range, varians, standar deviasi, serta quartiles, yang memberikan gambaran singkat mengenai distribusi dan tendensi data dalam sebuah dataset.")
 
-    st.write("Selain itu, pendekatan inferensial dapat digunakan untuk membuat estimasi atau pengambilan keputusan lebih lanjut berdasarkan sampel data yang diambil dari populasi. Misalnya, penggunaan interval kepercayaan atau pengujian hipotesis dapat memberikan pemahaman lebih lanjut tentang parameter populasi.")
+    st.write("Tujuannya memberikan gambaran singkat dan ringkas tentang karakteristik utama dari suatu dataset, termasuk distribusi dan tendensi data, sehingga memudahkan pemahaman awal tentang pola dan tren dalam data sebelum melakukan analisis yang lebih mendalam.")
 
-    st.write("Analisis spasial dengan mempertimbangkan koordinat geografis (Latitude dan Longitude), seperti yang terdapat dalam dataset, juga dapat membantu mengidentifikasi pola atau keterkaitan spasial di antara entitas populasi, memberikan wawasan lebih lanjut dalam konteks geografis.")
-
+   
     st.write("### Summary Statistics:")
     st.write(df.describe())
 
@@ -131,8 +127,6 @@ with c3:
 # Exploring variables
 with st.expander("⬇ EKSPLORASI VARIABEL:"):
     st.subheader("Korelasi antara Variabel")
-    st.write("Melihat matriks korelasi antara variabel dalam dataset.")
-
     selected_features = [
         'JUMLAH_LONGSOR',
         'JIWA_TERDAMPAK',
@@ -159,15 +153,15 @@ with st.expander("⬇ EKSPLORASI VARIABEL:"):
 
     st.plotly_chart(fig)
 
-    st.write("Visualisasi ini memberikan gambaran distribusi univariat dari setiap variabel dalam dataset. Histogram menunjukkan sebaran nilai-nilai di setiap variabel, dan kernel density estimation (KDE) memberikan perkiraan kurva distribusi.")
+    st.write("Visualisasi ini memberikan representasi visual dari data dalam bentuk matriks, di mana intensitas warna pada setiap sel matriks menggambarkan nilai variabel yang bersangkutan, memudahkan identifikasi pola, keterkaitan, atau perbedaan dalam data.")
 
 # checking null value
 with st.expander("⬇ NULL VALUES, TENDENCY & VARIABLE DISPERSION"):
     a1, a2 = st.columns(2)
-    a1.write("Jumlah nilai yang hilang (NaN atau None) di setiap kolom dalam DataFrame")
+    a1.write("Jumlah nilai yang tidak ada (NaN atau None) dalam setiap kolom DataFrame.")
     a1.dataframe(df.isnull().sum(), use_container_width=True)
 
-    a2.write("Insight ke dalam kecenderungan sentral, dispersi, dan distribusi data.")
+    a2.write("Informasi tentang tendensi pusat, dispersi, dan distribusi data.")
     a2.dataframe(df.describe().T, use_container_width=True)
 
 # Convert 'KABUPATEN' column to numeric
