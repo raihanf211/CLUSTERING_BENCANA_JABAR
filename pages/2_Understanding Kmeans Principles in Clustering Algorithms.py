@@ -210,7 +210,7 @@ with c3:
 # Display the scatter plot using Plotly Express
 with st.expander("⬇ CLUSTER VISUALIZATION"):
     fig = px.scatter(df, x='LONGITUDE', y='LATITUDE', color='Cluster',
-                 title="Clusters of Regionss", labels={'LONGITUDE': 'LONGITUDE', 'LATITUDE': 'LATITUDE'},
+                 title="Clusters of Regions", labels={'LONGITUDE': 'LONGITUDE', 'LATITUDE': 'LATITUDE'},
                  color_continuous_scale='viridis', size_max=10)
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig)
