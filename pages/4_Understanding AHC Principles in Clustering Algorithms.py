@@ -169,7 +169,7 @@ with st.expander("⬇ NULL VALUES, TENDENCY & VARIABLE DISPERSION"):
     a2.dataframe(df.describe().T, use_container_width=True)
 
 
-st.header("METODE LINKAGE)")
+st.header("METODE LINKAGE)"
 
 # Convert 'KABUPATEN' column to numeric
 df['KABUPATEN'] = pd.factorize(df['KABUPATEN'])[0]
