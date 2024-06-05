@@ -225,7 +225,7 @@ else:
     least_affected_city = "Data tidak tersedia"
 
 # Get total population affected, infrastructure damage, and other metrics (you need to replace 'populasi_terdampak' and 'kerusakan_infrastruktur' with the actual column names)
-total_population_affected = df[df['TAHUN'] == selected_year]['populasi_terdampak'].sum()
+total_population_affected = df[df['TAHUN'] == selected_year]['JUMLAH_TERDAMPAK'].sum()
 total_infrastructure_damage = df[df['TAHUN'] == selected_year]['kerusakan_infrastruktur'].sum()
 
 with st.expander('Informasi', expanded=True):
