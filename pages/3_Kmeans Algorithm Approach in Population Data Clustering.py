@@ -201,7 +201,7 @@ def kmeans_page():
                 
         with st.expander('Informasi', expanded=True):
             st.write('''
-            - **Klastering Data Bencana Longsor:** Data telah dikelompokkan ke dalam beberapa klaster berdasarkan jumlah longsor dan faktor lainnya.
+            - **Clastering Data Bencana Longsor:** Data telah dikelompokkan ke dalam beberapa klaster berdasarkan jumlah longsor dan faktor lainnya.
             - **Peta Klastering:** Titik-titik merah menandakan lokasi longsor di peta, dengan warna yang berbeda-beda sesuai dengan klaster.
             - **Histogram:** Histogram menunjukkan distribusi jumlah longsor di setiap klaster.
             - **Donut Chart:** Grafik donat menunjukkan proporsi jumlah longsor dalam setiap klaster.
@@ -223,9 +223,9 @@ def kmeans_page():
             st.write(silhouette_scores_df)
 
         with st.expander('Informasi', expanded=True):
-            st.write('''
-            - Data: [Sumber Data](link_sumber_data_anda).
-            - :orange[**Evaluasi Kualitas Klastering dengan Silhouette Score**]: Silhouette Score memberikan gambaran tentang seberapa baik data dapat dikelompokkan secara alami. Semakin tinggi nilai Silhouette Score, semakin jelas pemisahan antara klaster, yang menunjukkan struktur yang lebih baik dalam data. Namun, penting untuk dicatat bahwa Silhouette Score juga dapat membantu mengidentifikasi apakah ada klaster yang mungkin terlalu rapat (nilai mendekati 0) atau terlalu longgar (nilai negatif).
+            st.info('''
+            - Data: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](http://barata.jabarprov.go.id/).
+            - :orange[**Evaluasi Kualitas Clastering dengan Silhouette Score**]: Silhouette Score memberikan gambaran tentang seberapa baik data dapat dikelompokkan secara alami. Semakin tinggi nilai Silhouette Score, semakin jelas pemisahan antara klaster, yang menunjukkan struktur yang lebih baik dalam data. Namun, penting untuk dicatat bahwa Silhouette Score juga dapat membantu mengidentifikasi apakah ada klaster yang mungkin terlalu rapat (nilai mendekati 0) atau terlalu longgar (nilai negatif).
             - :chart_with_upwards_trend: **Perbaikan Klastering**: Dengan memonitor perubahan Silhouette Score seiring dengan penambahan atau pengurangan jumlah klaster, pengguna dapat mengeksplorasi bagaimana perubahan konfigurasi klastering dapat mempengaruhi kualitas klastering secara keseluruhan.
             - :star: **Hasil Terbaik**: Klastering terbaik ditemukan saat menggunakan {best_cluster_number} klaster, dengan nilai Silhouette Score tertinggi mencapai {best_silhouette_score:.3f}. Ini menunjukkan struktur klaster yang sangat baik dalam data Anda!
             ''')
