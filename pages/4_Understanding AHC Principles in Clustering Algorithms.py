@@ -169,7 +169,7 @@ with st.expander("⬇ NULL VALUES, TENDENCY & VARIABLE DISPERSION"):
     a2.dataframe(df.describe().T, use_container_width=True)
 
 
-st.header("METODE LINKAGE)"
+st.header("METODE LINKAGE")
 
 # Convert 'KABUPATEN' column to numeric
 df['KABUPATEN'] = pd.factorize(df['KABUPATEN'])[0]
@@ -344,7 +344,7 @@ with c1:
         st.plotly_chart(fig_ccc)
 
 with c2:
-    with st.expander("⬇ PERBANDINGAN METODE SINGLE, COMPLETE  DAN AVERAGE  DENGAN SILLHOUTE SCORE"):
+    with st.expander("⬇ PERBANDINGAN METODE SINGLE, COMPLETE DAN AVERAGE DENGAN SILLHOUTE SCORE"):
         fig = px.line(silhouette_df, x='Jumlah Cluster', y=['Single Linkage', 'Complete Linkage', 'Average Linkage'],
                     labels={'value': 'Silhouette Score', 'variable': 'Metode'},
                     title='Silhouette Score untuk Berbagai Jumlah Cluster',
