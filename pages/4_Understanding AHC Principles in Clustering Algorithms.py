@@ -25,7 +25,6 @@ with open('style.css') as f:
 
 st.header("ALGORITMA AGGLOMERATIVE HIERARCHICAL CLUSTERING (AHC)")
 
-st.latex(r"d(x, y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \ldots + (x_n - y_n)^2}")
 
 # Explanation of AHC
 st.markdown(
@@ -143,8 +142,6 @@ with st.expander("⬇ EKSPLORASI VARIABEL:"):
         'RUSAK_SEDANG',
         'RUSAK_BERAT',
         'TERTIMBUN',
-        'LATITUDE',
-        'LONGITUDE'
     ]
 
     # Calculate correlation matrix
