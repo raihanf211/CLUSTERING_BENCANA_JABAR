@@ -168,6 +168,9 @@ with st.expander("⬇ NULL VALUES, TENDENCY & VARIABLE DISPERSION"):
     a2.write("Informasi tentang tendensi pusat, dispersi, dan distribusi data.")
     a2.dataframe(df.describe().T, use_container_width=True)
 
+
+st.header("METODE LINKAGE)")
+
 # Convert 'KABUPATEN' column to numeric
 df['KABUPATEN'] = pd.factorize(df['KABUPATEN'])[0]
 
