@@ -232,7 +232,7 @@ total_infrastructure_damage = df[df['TAHUN'] == selected_year]['RUSAK_TERDAMPAK'
 
 with st.expander('Informasi', expanded=True):
     st.write(f'''
-        - **Sumber Data**: [Data Longsor Provinsi Jawa Barat](https://barata.jabarprov.go.id).
+        - **Sumber Data**: [BARATA Badan Penanggulangan Bencana Daerah Provinsi Jawa Barat](https://barata.jabarprov.go.id).
         - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih adalah {most_affected_city}, sedangkan yang terendah adalah {least_affected_city}.
         - :orange[**Perubahan Longsor yang Signifikan**]: Area dengan peningkatan atau penurunan jumlah longsor terbesar dari tahun sebelumnya.
         - :information_source: **Total Longsor**: Total jumlah kejadian longsor pada tahun yang dipilih adalah {total_landslides_selected_year}.
