@@ -29,7 +29,7 @@ st.markdown(
 <div class="card mb-3">
 <div class="card">
   <div class="card-body">
-    <h3 class="card-title" style="color:#007710;"><strong>⏱ PEMAHAMAN ALGORITMA KMEANS </strong></h3>
+    <h3 class="card-title" style="color:#007710;"><strong> PEMAHAMAN ALGORITMA KMEANS </strong></h3>
     <p class="card-text">Algoritma KMeans mengelompokkan data dengan memisahkan sampel ke dalam n kelompok, meminimalkan varians dalam setiap kelompok. Algoritma ini bekerja dengan mengurangi inersia, yaitu jumlah kuadrat jarak antara sampel dalam cluster dengan centroidnya, melalui iterasi.</p>
     <p class="card-text">Setiap cluster diwakili oleh centroid, yang merupakan mean dari sampel dalam cluster tersebut. Proses ini melibatkan penempatan sampel dalam cluster berdasarkan jarak Euclidean ke centroid terdekat dan memperbarui centroid hingga konvergensi.</p>
     <p class="card-text">KMeans memerlukan jumlah cluster sebagai input, dan untuk menentukan jumlah cluster yang optimal, metode seperti Elbow Method dapat digunakan. Algoritma ini efisien untuk sejumlah besar sampel dan memiliki berbagai aplikasi di banyak bidang.</p>
@@ -43,6 +43,9 @@ st.markdown(
 </style>
 """,unsafe_allow_html=True
 )
+st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
+st.markdown(
+ """
 
 # Pilih fitur yang ingin digunakan untuk klasterisasi
 features_kmeans = df[['KABUPATEN', 'JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT', 'TERTIMBUN', 'LATITUDE', 'LONGITUDE']]
