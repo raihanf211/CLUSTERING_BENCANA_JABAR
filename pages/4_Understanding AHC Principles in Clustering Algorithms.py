@@ -49,6 +49,13 @@ st.markdown(
     }
 </style>
 """, unsafe_allow_html=True)
+
+with st.expander("⬇ Berikut rumus perhitungan jarak Euclidean :"):
+     st.latex(r"d(x, y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \ldots + (x_n - y_n)^2}")
+     st.writer("di mana:")
+     st.writer("x1,x2,…,x n adalah koordinat titik 𝑥 dalam dimensi ke-𝑛.")
+     st.writer("y1,y2,…,y n adalah koordinat titik 𝑦 dalam dimensi ke-𝑛.")
+    
 # Read data
 df = pd.read_csv("Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv")
 
@@ -249,7 +256,7 @@ with st.expander("⬇ LINKAGE INFORMATION"):
     st.write("Complete Linkage: Menggunakan jarak maksimum antara anggota klaster.")
     st.write("Single Linkage: Menggunakan jarak minimum antara anggota klaster.")
     st.write("Average Linkage: Menggunakan rata-rata jarak antara semua pasangan anggota klaster.")
-    st.write("single's Method: Menggunakan kriteria minimisasi varians dalam klaster.")
+   
 
 # Assuming X_ahc is already defined
 # Your clustering and silhouette score calculation code
