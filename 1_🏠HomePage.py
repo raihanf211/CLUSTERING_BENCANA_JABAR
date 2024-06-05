@@ -210,14 +210,15 @@ with st.expander("HeatMap", expanded=False):
 
     st.altair_chart(heatmap_chart, use_container_width=True)
 
-with st.expander('Information', expanded=True):
+with st.expander('Informasi', expanded=True):
     st.write('''
-        - Data: [Data Penduduk Kabupaten Purwakarta](your_data_source_link).
-        - :orange[**Top Areas by Landslides**]: Areas with the highest number of landslides for the selected year.
-        - :orange[**Extreme Population Changes**]: Areas with the largest increase and decrease in landslides from the previous year.
-        - :information_source: **Average Landslides:** Average number of landslides for the selected year.
-        - :information_source: **Average Landslides (Top Areas):** Average number of landslides in the top areas.
-        - :information_source: **Mode Landslides (Top Areas):** Mode of landslides in the top areas.
-        - :bar_chart: **Population Visualization:** Correlation map and heatmap showing the total number of landslides in different areas.
-        - :chart_with_upwards_trend: **Landslides Trends:** Increase/Decrease, Top/Lowest Areas based on Landslides, and Extreme Landslide Changes visualized to provide insights into landslide dynamics.
+        - **Sumber Data**: [Data Longsor Provinsi Jawa Barat](link_sumber_data_anda).
+        - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih.
+        - :orange[**Perubahan Longsor yang Signifikan**]: Area dengan peningkatan atau penurunan jumlah longsor terbesar dari tahun sebelumnya.
+        - :information_source: **Total Longsor**: Total jumlah kejadian longsor pada tahun yang dipilih.
+        - :information_source: **Populasi Terdampak**: Total jumlah orang yang terdampak longsor pada tahun yang dipilih.
+        - :information_source: **Kerusakan Infrastruktur**: Rincian kerusakan infrastruktur akibat longsor (ringan, sedang, berat) pada tahun yang dipilih.
+        - :bar_chart: **Visualisasi Peta Panas**: Peta panas yang menunjukkan distribusi longsor di berbagai area.
+        - :chart_with_upwards_trend: **Tren Longsor**: Dinamika dan tren longsor, termasuk peningkatan/penurunan dan area dengan jumlah longsor tertinggi dan terendah setiap tahunnya.
     ''')
+
