@@ -19,7 +19,7 @@ with open('style.css') as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
  
-st.header(" UNDERSTANDING ALGORITMA KMEANS ")
+st.header(" ALGORITMA KMEANS ")
 st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
 st.markdown(
  """
@@ -29,7 +29,7 @@ st.markdown(
 <div class="card mb-3">
 <div class="card">
   <div class="card-body">
-    <h3 class="card-title" style="color:#007710;"><strong>⏱ PEMAHAMAN ALGORITMA KMEANS DALAM KLASTERISASI POPULASI</strong></h3>
+    <h3 class="card-title" style="color:#007710;"><strong>⏱ PEMAHAMAN ALGORITMA KMEANS </strong></h3>
     <p class="card-text">Algoritma KMeans mengelompokkan data dengan memisahkan sampel ke dalam n kelompok, meminimalkan varians dalam setiap kelompok. Algoritma ini bekerja dengan mengurangi inersia, yaitu jumlah kuadrat jarak antara sampel dalam cluster dengan centroidnya, melalui iterasi.</p>
     <p class="card-text">Setiap cluster diwakili oleh centroid, yang merupakan mean dari sampel dalam cluster tersebut. Proses ini melibatkan penempatan sampel dalam cluster berdasarkan jarak Euclidean ke centroid terdekat dan memperbarui centroid hingga konvergensi.</p>
     <p class="card-text">KMeans memerlukan jumlah cluster sebagai input, dan untuk menentukan jumlah cluster yang optimal, metode seperti Elbow Method dapat digunakan. Algoritma ini efisien untuk sejumlah besar sampel dan memiliki berbagai aplikasi di banyak bidang.</p>
@@ -53,11 +53,9 @@ df_sample = df.sample(n=10)  # Ambil sampel 10 desa
 # Ekspander untuk menampilkan data
 with st.expander("⬇ DATA UNDERSTANDING FOR KMEANS :"):
     # Display summary statistics
-    st.write("Pendekatan statistik dari data populasi memberikan wawasan mendalam tentang karakteristik keseluruhan dari dataset. Dengan menganalisis statistik deskriptif, seperti yang ditampilkan di atas, kita dapat melihat gambaran umum tentang bagaimana nilai-nilai tersebar, tendensi sentral, dan sebaran data.")
-
-    st.write("Selain itu, pendekatan inferensial dapat digunakan untuk membuat estimasi atau pengambilan keputusan lebih lanjut berdasarkan sampel data yang diambil dari populasi. Misalnya, penggunaan interval kepercayaan atau pengujian hipotesis dapat memberikan pemahaman lebih lanjut tentang parameter populasi.")
-
-    st.write("Analisis spasial dengan mempertimbangkan koordinat geografis (Latitude dan Longitude), seperti yang terdapat dalam dataset, juga dapat membantu mengidentifikasi pola atau keterkaitan spasial di antara entitas populasi, memberikan wawasan lebih lanjut dalam konteks geografis.")
+    st.write("Summary statistic adalah ringkasan statistik deskriptif yang mencakup ukuran-ukuran seperti mean, median, mode, range, varians, standar deviasi, serta quartiles, yang memberikan gambaran singkat mengenai distribusi dan tendensi data dalam sebuah dataset.")
+    
+    st.write("Tujuannya memberikan gambaran singkat dan ringkas tentang karakteristik utama dari suatu dataset, termasuk distribusi dan tendensi data, sehingga memudahkan pemahaman awal tentang pola dan tren dalam data sebelum melakukan analisis yang lebih mendalam.")
 
     st.write("### Summary Statistics:")
     st.write(df.describe())
@@ -168,7 +166,7 @@ c1, c2, c3 = st.columns(3)
 
 with c1:
     with st.expander("⬇ ELBOW METHOD"):
-        st.write("Metode Elbow digunakan untuk menentukan jumlah klaster optimal dalam algoritma KMeans.")
+        st.write("Metode Elbow digunakan untuk membantu penentuan jumlah cluster yang optimal, dengan mengidentifikasi titik di mana penurunan inersia menjadi lebih lambat, memberikan panduan dalam memilih jumlah cluster yang sesuai untuk data yang dianalisis")
         plt.figure(figsize=(8, 6))
         plt.plot(range(1, 11), distortions, marker='o')
         plt.title('Metode Elbow untuk Menentukan Jumlah Klaster Optimal')
@@ -179,7 +177,7 @@ with c1:
 # Visualisasi Silhouette Score
 with c2:
     with st.expander("⬇ SILHOUETTE SCORE"):
-        st.write("Silhouette Score digunakan untuk mengukur sejauh mana klaster terpisah dan saling berdekatan.")
+        st.write("Silhouette Score digunakan untuk mengevaluasi seberapa baik setiap titik data sesuai dengan klaster tempat berada, memberikan pengukuran yang membantu menilai kualitas klasterisasi secara keseluruhan.")
         
         plt.figure(figsize=(8, 6))
         plt.plot(range(2, 11), silhouette_scores, marker='o')
@@ -191,7 +189,7 @@ with c2:
 # Kesimpulan
 with c3:
     with st.expander("⬇ KESIMPULAN"):
-        st.write("Berdasarkan analisis menggunakan Elbow Method dan Silhouette Score, kita dapat menyimpulkan:")
+        st.write("Dari analisis yang melibatkan Elbow Method dan Silhouette Score, dapat di simpulkan::")
         
         # Menentukan jumlah klaster optimal dari Elbow Method
         optimal_clusters = 2  # Ganti dengan hasil analisis Elbow Method
