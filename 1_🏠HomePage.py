@@ -77,8 +77,9 @@ for i, row in df[df['TAHUN'] == selected_year].iterrows():
     folium.Marker(
         location=[row['LATITUDE'], row['LONGITUDE']],
         tooltip=row['KABUPATEN'],
-        icon=folium.Icon(color='red', icon='bi bi-exclamation-diamond-fil', prefix='fa'),
-    ).add_to(m).add_child(folium.Popup(popup_content, max_width=600))
+    icon=folium.Icon(color='red', icon='bi bi-geo-fill', prefix='fa'),  # Menggunakan ikon untuk longsor
+).add_to(m).add_child(folium.Popup(popup_content, max_width=600))
+
 
 # Heatmap Layer
 heat_data = [[row['LATITUDE'], row['LONGITUDE']] for _, row in df[df['TAHUN'] == selected_year].iterrows()]
