@@ -171,6 +171,11 @@ with st.expander("⬇ NULL VALUES, TENDENCY & VARIABLE DISPERSION"):
 
 st.header("METODE LINKAGE")
 
+with st.expander("⬇ LINKAGE INFORMATION"):
+    st.write("Single Linkage: Menggunakan jarak minimum antara anggota klaster.")
+    st.write("Complete Linkage: Menggunakan jarak maksimum antara anggota klaster.")
+    st.write("Average Linkage: Menggunakan rata-rata jarak antara semua pasangan anggota klaster.")
+
 # Convert 'KABUPATEN' column to numeric
 df['KABUPATEN'] = pd.factorize(df['KABUPATEN'])[0]
 
@@ -252,10 +257,6 @@ with c3:
         st.write(f"Cophenetic Correlation Coefficient (CCC) untuk Dendrogram AHC (Average): {ccc_average:.4f}")
         st.write(f"Jumlah klaster optimal untuk metode linkage Average: {len(set(labels_average))}")
 
-with st.expander("⬇ LINKAGE INFORMATION"):
-    st.write("Single Linkage: Menggunakan jarak minimum antara anggota klaster.")
-    st.write("Complete Linkage: Menggunakan jarak maksimum antara anggota klaster.")
-    st.write("Average Linkage: Menggunakan rata-rata jarak antara semua pasangan anggota klaster.")
    
 
 # Assuming X_ahc is already defined
