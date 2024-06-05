@@ -49,7 +49,7 @@ st.markdown(
 </style>
 """, unsafe_allow_html=True)
 
-with st.expander("⬇ Berikut rumus perhitungan jarak Euclidean :"):
+with st.expander("⬇ Berikut Rumus Perhitungan Jarak Euclidean :"):
      st.latex(r"d(x, y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \ldots + (x_n - y_n)^2}")
      st.write("di mana:")
      st.write("x1,x2,…,x n adalah koordinat titik 𝑥 dalam dimensi ke-𝑛.")
@@ -329,9 +329,9 @@ with c1:
                         labels={'CCC': 'Cophenetic Correlation Coefficient', 'Metode': 'Metode Clustering'},
                         color='Metode',
                         color_discrete_map={
-                            'Single': 'blue',
-                            'Average': 'green',
-                            'Complete': 'red'
+                            'Single': 'red',
+                            'Average': 'blue',
+                            'Complete': 'green'
                         })
 
         # Menampilkan plot
@@ -343,9 +343,9 @@ with c2:
                     labels={'value': 'Silhouette Score', 'variable': 'Metode'},
                     title='Silhouette Score untuk Berbagai Jumlah Cluster',
                     color_discrete_map={
-                        'Single Linkage': 'blue',
-                        'Average Linkage': 'green',
-                        'Complete Linkage': 'red'
+                        'Single Linkage': 'red',
+                        'Average Linkage': 'blue',
+                        'Complete Linkage': 'green'
                     })
 
         # Tampilkan plot
