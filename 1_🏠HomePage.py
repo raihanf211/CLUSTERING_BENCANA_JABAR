@@ -77,7 +77,7 @@ for i, row in df[df['TAHUN'] == selected_year].iterrows():
     folium.Marker(
     location=[row['LATITUDE'], row['LONGITUDE']],
     tooltip=row['KABUPATEN'],
-    icon=folium.Icon(color='red', icon='exclamation-triangle', prefix='fa'),  # Menggunakan ikon untuk longsor
+    icon=folium.Icon(color='yellow', icon='exclamation-triangle', prefix='fa'),  # Menggunakan ikon untuk longsor
 ).add_to(m).add_child(folium.Popup(popup_content, max_width=600))
 
 
