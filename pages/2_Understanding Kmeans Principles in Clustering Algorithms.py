@@ -30,11 +30,9 @@ st.markdown(
 <div class="card">
   <div class="card-body">
     <h3 class="card-title" style="color:#007710;"><strong>⏱ PEMAHAMAN ALGORITMA KMEANS DALAM KLASTERISASI POPULASI</strong></h3>
-    <p class="card-text">Algoritma KMeans mengelompokkan data dengan mencoba memisahkan sampel ke dalam n kelompok dengan varian yang sama, meminimalkan kriteria yang dikenal sebagai inersia atau jumlah kuadrat dalam cluster. Algoritma ini memerlukan jumlah cluster yang harus ditentukan. Ini berskala baik untuk sejumlah besar sampel dan telah digunakan di berbagai bidang aplikasi di berbagai bidang.</p>
-    <p class="card-text">Algoritme K-means membagi satu set sampel ke dalam cluster yang terpisah-pisah, masing-masing dijelaskan dengan mean sampel yang ada di cluster tersebut. Sarana tersebut umumnya disebut cluster “centroids”; perhatikan bahwa secara umum poin-poin tersebut bukan berasal dari, meskipun mereka tinggal di ruang yang sama.</p>
-    <p class="card-text">Algoritma KMeans bekerja dengan mencoba meminimalkan inersia atau jumlah kuadrat dalam cluster. Inersia diukur sebagai jumlah jarak kuadrat antara setiap sampel dalam cluster dengan centroidnya. Proses ini melibatkan iterasi di mana setiap sampel ditempatkan dalam cluster berdasarkan jarak Euclidean ke centroid terdekat. Centroid diupdate dengan menghitung mean dari semua sampel dalam cluster, dan proses ini diulangi hingga konvergensi.</p>
-    <p class="card-text">Algoritma ini memerlukan jumlah cluster sebagai parameter input, dan pemilihan jumlah cluster yang tepat dapat dilakukan dengan menggunakan metode seperti Elbow Method.</p>
-  </div>
+    <p class="card-text">Algoritma KMeans mengelompokkan data dengan memisahkan sampel ke dalam n kelompok, meminimalkan varians dalam setiap kelompok. Algoritma ini bekerja dengan mengurangi inersia, yaitu jumlah kuadrat jarak antara sampel dalam cluster dengan centroidnya, melalui iterasi.</p>
+    <p class="card-text">Setiap cluster diwakili oleh centroid, yang merupakan mean dari sampel dalam cluster tersebut. Proses ini melibatkan penempatan sampel dalam cluster berdasarkan jarak Euclidean ke centroid terdekat dan memperbarui centroid hingga konvergensi.</p>
+    <p class="card-text">KMeans memerlukan jumlah cluster sebagai input, dan untuk menentukan jumlah cluster yang optimal, metode seperti Elbow Method dapat digunakan. Algoritma ini efisien untuk sejumlah besar sampel dan memiliki berbagai aplikasi di banyak bidang.</p>
 </div>
 </div>
  <style>
