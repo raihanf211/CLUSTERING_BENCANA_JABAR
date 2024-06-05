@@ -231,7 +231,7 @@ total_population_affected = df[df['TAHUN'] == selected_year]['JIWA_TERDAMPAK'].s
 total_infrastructure_damage = df[df['TAHUN'] == selected_year]['RUSAK_TERDAMPAK'].sum()
 
 with st.expander('Informasi', expanded=True):
-    st.write(f'''
+    st.info(f'''
         - **Sumber Data**: [BARATA Badan Penanggulangan Bencana Daerah Provinsi Jawa Barat](https://barata.jabarprov.go.id).
         - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih adalah {most_affected_city}, sedangkan yang terendah adalah {least_affected_city}.
         - :orange[**Perubahan Longsor yang Signifikan**]: Area dengan peningkatan atau penurunan jumlah longsor terbesar dari tahun sebelumnya.
