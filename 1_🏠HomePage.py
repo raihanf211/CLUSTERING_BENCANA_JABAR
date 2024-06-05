@@ -224,17 +224,22 @@ else:
     most_affected_city = "Data tidak tersedia"
     least_affected_city = "Data tidak tersedia"
 
+# Get total population affected, infrastructure damage, and other metrics (you need to replace 'populasi_terdampak' and 'kerusakan_infrastruktur' with the actual column names)
+total_population_affected = df[df['TAHUN'] == selected_year]['populasi_terdampak'].sum()
+total_infrastructure_damage = df[df['TAHUN'] == selected_year]['kerusakan_infrastruktur'].sum()
+
 with st.expander('Informasi', expanded=True):
     st.write(f'''
         - **Sumber Data**: [Data Longsor Provinsi Jawa Barat](link_sumber_data_anda).
         - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih adalah {most_affected_city}, sedangkan yang terendah adalah {least_affected_city}.
         - :orange[**Perubahan Longsor yang Signifikan**]: Area dengan peningkatan atau penurunan jumlah longsor terbesar dari tahun sebelumnya.
         - :information_source: **Total Longsor**: Total jumlah kejadian longsor pada tahun yang dipilih adalah {total_landslides_selected_year}.
-        - :information_source: **Populasi Terdampak**: Total jumlah orang yang terdampak longsor pada tahun yang dipilih.
-        - :information_source: **Kerusakan Infrastruktur**: Rincian kerusakan infrastruktur akibat longsor (ringan, sedang, berat) pada tahun yang dipilih.
+        - :information_source: **Populasi Terdampak**: Total jumlah orang yang terdampak longsor pada tahun yang dipilih adalah {total_population_affected}.
+        - :information_source: **Kerusakan Infrastruktur**: Rincian kerusakan infrastruktur akibat longsor (ringan, sedang, berat) pada tahun yang dipilih adalah {total_infrastructure_damage}.
         - :bar_chart: **Visualisasi Peta Panas**: Peta panas yang menunjukkan distribusi longsor di berbagai area.
         - :chart_with_upwards_trend: **Tren Longsor**: Dinamika dan tren longsor, termasuk peningkatan/penurunan dan area dengan jumlah longsor tertinggi dan terendah setiap tahunnya.
     ''')
+
 
 
 
