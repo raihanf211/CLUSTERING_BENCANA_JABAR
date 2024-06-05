@@ -20,7 +20,6 @@ with open('style.css') as f:
 
  
 st.header(" ALGORITMA KMEANS ")
-st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
 st.markdown(
  """
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,8 +42,9 @@ st.markdown(
 </style>
 """,unsafe_allow_html=True
 )
-st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
 
+st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
+st.markdown
 
 # Pilih fitur yang ingin digunakan untuk klasterisasi
 features_kmeans = df[['KABUPATEN', 'JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT', 'TERTIMBUN', 'LATITUDE', 'LONGITUDE']]
