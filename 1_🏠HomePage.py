@@ -215,9 +215,14 @@ with st.expander("HeatMap", expanded=False):
 # Calculate total landslides for the selected year
 total_landslides_selected_year = df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].sum()
 
-# Mendapatkan nama kota dengan jumlah longsor tertinggi dan terendah
-most_affected_city = df[df['TAHUN'] == selected_year].loc[df['JUMLAH_LONGSOR'].idxmax()]['KABUPATEN']
-least_affected_city = df[df['TAHUN'] == selected_year].loc[df['JUMLAH_LONGSOR'].idxmin()]['KABUPATEN']
+# Cek apakah ada data yang sesuai dengan tahun yang dipilih
+if not df[df['TAHUN'] == selected_year].empty:
+    # Mendapatkan nama kota dengan jumlah longsor tertinggi dan terendah
+    most_affected_city = df[df['TAHUN'] == selected_year].loc[df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].idxmax()]['KABUPATEN']
+    least_affected_city = df[df['TAHUN'] == selected_year].loc[df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].idxmin()]['KABUPATEN']
+else:
+    most_affected_city = "Data tidak tersedia"
+    least_affected_city = "Data tidak tersedia"
 
 with st.expander('Informasi', expanded=True):
     st.write(f'''
@@ -230,6 +235,7 @@ with st.expander('Informasi', expanded=True):
         - :bar_chart: **Visualisasi Peta Panas**: Peta panas yang menunjukkan distribusi longsor di berbagai area.
         - :chart_with_upwards_trend: **Tren Longsor**: Dinamika dan tren longsor, termasuk peningkatan/penurunan dan area dengan jumlah longsor tertinggi dan terendah setiap tahunnya.
     ''')
+
 
 
 
