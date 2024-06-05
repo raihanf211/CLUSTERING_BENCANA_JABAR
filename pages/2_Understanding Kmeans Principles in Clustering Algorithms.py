@@ -45,7 +45,7 @@ st.markdown(
 )
 st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
 st.markdown(
- """
+ """)
 
 # Pilih fitur yang ingin digunakan untuk klasterisasi
 features_kmeans = df[['KABUPATEN', 'JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT', 'TERTIMBUN', 'LATITUDE', 'LONGITUDE']]
