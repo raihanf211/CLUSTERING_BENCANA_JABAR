@@ -211,26 +211,29 @@ def kmeans_page():
             ''')
 
     with tab3:
-        col = st.columns((5, 1.5), gap='medium')
-        with col[0]:
-            st.expander('Desa Maps View Silhouette Score Clustering', expanded=True)
-            # Line plot for silhouette scores
-            silhouette_line_plot = px.line(silhouette_scores_df, x='num_clusters', y='silhouette_score',
-                                           markers=True, labels={'num_clusters': 'Number of Clusters', 'silhouette_score': 'Silhouette Score'})
-            st.plotly_chart(silhouette_line_plot, use_container_width=True)
-        with col[1]:
-            st.write(silhouette_scores_df)
-            
-best_silhouette_score = silhouette_scores_df['silhouette_score'].max()
-best_cluster_number = silhouette_scores_df.loc[silhouette_scores_df['silhouette_score'] == best_silhouette_score, 'num_clusters'].values[0]
+    col = st.columns((5, 1.5), gap='medium')
 
-with st.expander('Informasi', expanded=True):
-    st.write('''
-    - Data: [Sumber Data](link_sumber_data_anda).
-    - :orange[**Evaluasi Kualitas Klastering dengan Silhouette Score**]: Silhouette Score memberikan gambaran tentang seberapa baik data dapat dikelompokkan secara alami. Semakin tinggi nilai Silhouette Score, semakin jelas pemisahan antara klaster, yang menunjukkan struktur yang lebih baik dalam data. Namun, penting untuk dicatat bahwa Silhouette Score juga dapat membantu mengidentifikasi apakah ada klaster yang mungkin terlalu rapat (nilai mendekati 0) atau terlalu longgar (nilai negatif).
-    - :chart_with_upwards_trend: **Perbaikan Klastering**: Dengan memonitor perubahan Silhouette Score seiring dengan penambahan atau pengurangan jumlah klaster, pengguna dapat mengeksplorasi bagaimana perubahan konfigurasi klastering dapat mempengaruhi kualitas klastering secara keseluruhan.
-    - :star: **Hasil Terbaik**: Klastering terbaik ditemukan saat menggunakan {best_cluster_number} klaster, dengan nilai Silhouette Score tertinggi mencapai {best_silhouette_score:.3f}. Ini menunjukkan struktur klaster yang sangat baik dalam data Anda!
-    ''')
+    with col[0]:
+        st.expander('Desa Maps View Silhouette Score Clustering', expanded=True)
+        # Line plot for silhouette scores
+        silhouette_line_plot = px.line(silhouette_scores_df, x='num_clusters', y='silhouette_score',
+                                       markers=True, labels={'num_clusters': 'Number of Clusters', 'silhouette_score': 'Silhouette Score'})
+        st.plotly_chart(silhouette_line_plot, use_container_width=True)
+
+    with col[1]:
+        st.write(silhouette_scores_df)
+
+    best_silhouette_score = silhouette_scores_df['silhouette_score'].max()
+    best_cluster_number = silhouette_scores_df.loc[silhouette_scores_df['silhouette_score'] == best_silhouette_score, 'num_clusters'].values[0]
+
+    with st.expander('Informasi', expanded=True):
+        st.write('''
+        - Data: [Sumber Data](link_sumber_data_anda).
+        - :orange[**Evaluasi Kualitas Klastering dengan Silhouette Score**]: Silhouette Score memberikan gambaran tentang seberapa baik data dapat dikelompokkan secara alami. Semakin tinggi nilai Silhouette Score, semakin jelas pemisahan antara klaster, yang menunjukkan struktur yang lebih baik dalam data. Namun, penting untuk dicatat bahwa Silhouette Score juga dapat membantu mengidentifikasi apakah ada klaster yang mungkin terlalu rapat (nilai mendekati 0) atau terlalu longgar (nilai negatif).
+        - :chart_with_upwards_trend: **Perbaikan Klastering**: Dengan memonitor perubahan Silhouette Score seiring dengan penambahan atau pengurangan jumlah klaster, pengguna dapat mengeksplorasi bagaimana perubahan konfigurasi klastering dapat mempengaruhi kualitas klastering secara keseluruhan.
+        - :star: **Hasil Terbaik**: Klastering terbaik ditemukan saat menggunakan {best_cluster_number} klaster, dengan nilai Silhouette Score tertinggi mencapai {best_silhouette_score:.3f}. Ini menunjukkan struktur klaster yang sangat baik dalam data Anda!
+        ''')
+
 
 
 
