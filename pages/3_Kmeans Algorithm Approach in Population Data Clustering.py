@@ -202,14 +202,12 @@ def kmeans_page():
                 
         with st.expander('Informasi', expanded=True):
             st.write('''
-            - Data: [Sumber Data](link_sumber_data_anda).
-            - :orange[**Area Prioritas Berdasarkan Tingkat Rawan Bencana**]: Area dengan tingkat rawan bencana tertinggi untuk tahun yang dipilih.
-            - :orange[**Perubahan Kejadian Bencana yang Signifikan**]: Area dengan peningkatan atau penurunan kejadian bencana terbesar dari tahun sebelumnya.
-            - :information_source: **Rata-rata Kejadian Bencana:** Rata-rata jumlah kejadian bencana untuk tahun yang dipilih.
-            - :information_source: **Rata-rata Kejadian Bencana (Area Prioritas):** Rata-rata jumlah kejadian bencana di area prioritas.
-            - :information_source: **Modus Kejadian Bencana (Area Prioritas):** Modus jumlah kejadian bencana di area prioritas.
-            - :bar_chart: **Visualisasi Kejadian Bencana:** Peta korelasi dan peta panas menampilkan total kejadian bencana di berbagai area.
-            - :chart_with_upwards_trend: **Tren Kejadian Bencana:** Grafik menampilkan tren kenaikan/penurunan kejadian bencana, serta area prioritas dengan tingkat rawan bencana tertinggi dan terendah, serta perubahan kejadian bencana yang signifikan.
+            - **Klastering Data Bencana Longsor:** Data telah dikelompokkan ke dalam beberapa klaster berdasarkan jumlah longsor dan faktor lainnya.
+            - **Peta Klastering:** Titik-titik merah menandakan lokasi longsor di peta, dengan warna yang berbeda-beda sesuai dengan klaster.
+            - **Histogram:** Histogram menunjukkan distribusi jumlah longsor di setiap klaster.
+            - **Donut Chart:** Grafik donat menunjukkan proporsi jumlah longsor dalam setiap klaster.
+            - **Scatterplot:** Scatterplot memvisualisasikan lokasi longsor dengan sumbu x dan y sebagai koordinat lintang dan bujur.
+            - **Elbow Method:** Grafik ini membantu menentukan jumlah klaster yang optimal berdasarkan metode elbow.
             ''')
 
     with tab3:
