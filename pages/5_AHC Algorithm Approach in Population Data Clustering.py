@@ -238,8 +238,8 @@ def ahc_page():
             st.write(silhouette_scores_df)
 
         with st.expander('Informasi', expanded=True):
-            st.write('''
-            - Data: [Sumber Data](link_sumber_data_anda).
+            st.info('''
+            - Data: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](http://barata.jabarprov.go.id/).
             - :orange[**Area Prioritas Berdasarkan Tingkat Rawan Bencana**]: Area dengan tingkat rawan bencana tertinggi untuk tahun yang dipilih.
             - :orange[**Perubahan Kejadian Bencana yang Signifikan**]: Area dengan peningkatan atau penurunan kejadian bencana terbesar dari tahun sebelumnya.
             - :information_source: **Rata-rata Kejadian Bencana:** Rata-rata jumlah kejadian bencana untuk tahun yang dipilih.
