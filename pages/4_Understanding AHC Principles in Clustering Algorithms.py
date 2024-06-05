@@ -324,7 +324,7 @@ silhouette_df = pd.DataFrame({
 
 c1,c2 = st.columns(2)
 with c1:
-    with st.expander("⬇ PERBANDINGAN METODE SINGLE, AVERAGE DAN COMPLETE DENGAN Cophenetic Correlation Coefficient"):
+    with st.expander("⬇ PERBANDINGAN METODE SINGLE, COMPLETE DAN AVERAGE DENGAN Cophenetic Correlation Coefficient"):
         # Membuat plot perbandingan CCC
         fig_ccc = px.bar(ccc_comparison_df, x='Metode', y='CCC', 
                         title='Perbandingan Cophenetic Correlation Coefficient (CCC)',
@@ -332,22 +332,24 @@ with c1:
                         color='Metode',
                         color_discrete_map={
                             'Single': 'red',
-                            'Average': 'blue',
-                            'Complete': 'green'
+                            'Complete': 'green',
+                            'Average': 'blue'
+                            
                         })
 
         # Menampilkan plot
         st.plotly_chart(fig_ccc)
 
 with c2:
-    with st.expander("⬇ PERBANDINGAN METODE SINGLE, AVERAGE DAN COMPLETE DENGAN SILLHOUTE SCORE"):
-        fig = px.line(silhouette_df, x='Jumlah Cluster', y=['Single Linkage', 'Average Linkage', 'Complete Linkage'],
+    with st.expander("⬇ PERBANDINGAN METODE SINGLE, COMPLETE  DAN AVERAGE  DENGAN SILLHOUTE SCORE"):
+        fig = px.line(silhouette_df, x='Jumlah Cluster', y=['Single Linkage', 'Complete Linkage', 'Average Linkage'],
                     labels={'value': 'Silhouette Score', 'variable': 'Metode'},
                     title='Silhouette Score untuk Berbagai Jumlah Cluster',
                     color_discrete_map={
                         'Single Linkage': 'red',
-                        'Average Linkage': 'blue',
-                        'Complete Linkage': 'green'
+                        'Complete Linkage': 'green',
+                        'Average Linkage': 'blue'
+                        
                     })
 
         # Tampilkan plot
