@@ -45,12 +45,7 @@ st.markdown(
 
 with st.expander("⬇ Berikut adalah Rumus SSE (Sum of Squared Errors) :"):
      st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
-    st.write("di mana: 
-    𝑘 adalah jumlah klaster yang diuji,
-    𝑛 adalah jumlah total sampel data,
-    𝑥𝑖𝑗 adalah sampel data ke-𝑗 dalam klaster ke-𝑖
-    𝑐𝑖 adalah centroid dari klaster ke-𝑖,
-    ∣∣𝑥𝑖𝑗−𝑐𝑖∣∣2 adalah jarak kuadrat antara sampel data 𝑥𝑖𝑗 dan centroid klaster 𝑐𝑖.")
+    st.write("di mana:  𝑘 adalah jumlah klaster yang diuji, 𝑛 adalah jumlah total sampel data, 𝑥𝑖𝑗 adalah sampel data ke-𝑗 dalam klaster ke-𝑖, 𝑐𝑖 adalah centroid dari klaster ke-𝑖, ∣∣𝑥𝑖𝑗−𝑐𝑖∣∣2 adalah jarak kuadrat antara sampel data 𝑥𝑖𝑗 dan centroid klaster 𝑐𝑖.")
 
 
 
