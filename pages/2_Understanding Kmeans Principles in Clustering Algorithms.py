@@ -44,7 +44,7 @@ st.markdown(
 )
 
 with st.expander("⬇ Berikut adalah Rumus dari Algoritma K-MEANS :"):
-st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
+     st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
 
 
 # Pilih fitur yang ingin digunakan untuk klasterisasi
