@@ -215,10 +215,14 @@ with st.expander("HeatMap", expanded=False):
 # Calculate total landslides for the selected year
 total_landslides_selected_year = df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].sum()
 
+# Mendapatkan nama kota dengan jumlah longsor tertinggi dan terendah
+most_affected_city = df[df['TAHUN'] == selected_year].loc[df['JUMLAH_LONGSOR'].idxmax()]['KABUPATEN']
+least_affected_city = df[df['TAHUN'] == selected_year].loc[df['JUMLAH_LONGSOR'].idxmin()]['KABUPATEN']
+
 with st.expander('Informasi', expanded=True):
     st.write(f'''
         - **Sumber Data**: [Data Longsor Provinsi Jawa Barat](link_sumber_data_anda).
-        - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih.
+        - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih adalah {most_affected_city}, sedangkan yang terendah adalah {least_affected_city}.
         - :orange[**Perubahan Longsor yang Signifikan**]: Area dengan peningkatan atau penurunan jumlah longsor terbesar dari tahun sebelumnya.
         - :information_source: **Total Longsor**: Total jumlah kejadian longsor pada tahun yang dipilih adalah {total_landslides_selected_year}.
         - :information_source: **Populasi Terdampak**: Total jumlah orang yang terdampak longsor pada tahun yang dipilih.
@@ -226,4 +230,6 @@ with st.expander('Informasi', expanded=True):
         - :bar_chart: **Visualisasi Peta Panas**: Peta panas yang menunjukkan distribusi longsor di berbagai area.
         - :chart_with_upwards_trend: **Tren Longsor**: Dinamika dan tren longsor, termasuk peningkatan/penurunan dan area dengan jumlah longsor tertinggi dan terendah setiap tahunnya.
     ''')
+
+
 
