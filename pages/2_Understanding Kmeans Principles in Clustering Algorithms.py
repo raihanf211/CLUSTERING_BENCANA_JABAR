@@ -43,6 +43,7 @@ st.markdown(
 """,unsafe_allow_html=True
 )
 
+with st.expander("⬇ Berikut adalah Rumus dari Algoritma K-MEANS :"):
 st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
 
 
