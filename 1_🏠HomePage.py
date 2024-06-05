@@ -210,12 +210,15 @@ with st.expander("HeatMap", expanded=False):
 
     st.altair_chart(heatmap_chart, use_container_width=True)
 
+# Calculate total landslides for the selected year
+total_landslides_selected_year = df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].sum()
+
 with st.expander('Informasi', expanded=True):
-    st.write('''
+    st.write(f'''
         - **Sumber Data**: [Data Longsor Provinsi Jawa Barat](link_sumber_data_anda).
         - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih.
         - :orange[**Perubahan Longsor yang Signifikan**]: Area dengan peningkatan atau penurunan jumlah longsor terbesar dari tahun sebelumnya.
-        - :information_source: **Total Longsor**: Total jumlah kejadian longsor pada tahun yang dipilih.
+        - :information_source: **Total Longsor**: Total jumlah kejadian longsor pada tahun yang dipilih adalah {total_landslides_selected_year}.
         - :information_source: **Populasi Terdampak**: Total jumlah orang yang terdampak longsor pada tahun yang dipilih.
         - :information_source: **Kerusakan Infrastruktur**: Rincian kerusakan infrastruktur akibat longsor (ringan, sedang, berat) pada tahun yang dipilih.
         - :bar_chart: **Visualisasi Peta Panas**: Peta panas yang menunjukkan distribusi longsor di berbagai area.
