@@ -14,8 +14,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed",  # Collapse the sidebar by default
 )
 
-with open('style.css')as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+with open('style.css') as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 # Title of the application
@@ -32,8 +32,16 @@ df = pd.read_csv(file_path)
 # Sidebar for selecting the year
 selected_year = st.sidebar.slider('Select Year', min_value=df['TAHUN'].min(), max_value=df['TAHUN'].max(), value=df['TAHUN'].max(), step=1)
 
+# Dropdown for selecting the KABUPATEN
+selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', df['KABUPATEN'].unique())
+
+# Filter dataframe for the selected year and KABUPATEN
+df_filtered_year = df[df['TAHUN'] == selected_year]
+df_filtered_kabupaten = df_filtered_year[df_filtered_year['KABUPATEN'] == selected_kabupaten]
+
 # Create a map with a unique key based on the selected year
-m = folium.Map(location=[df['LATITUDE'].mean(), df['LONGITUDE'].mean()], zoom_start=10, key=f"map-{selected_year}", width='100%')
+m = folium.Map(location=[df['LATITUDE'].mean(), df['LONGITUDE'].mean()], zoom_start=8, key=f"map-{selected_year}", width='100%')
+
 
 # Add a marker for each data point
 for i, row in df[df['TAHUN'] == selected_year].iterrows():
@@ -76,12 +84,17 @@ for i, row in df[df['TAHUN'] == selected_year].iterrows():
             </li>
         </ul>
     </div>
-"""
+    """
+
+    if row['KABUPATEN'] == selected_kabupaten:
+        icon = folium.Icon(color='blue', icon='exclamation-triangle', prefix='fa')
+    else:
+        icon = folium.Icon(color='red', icon='exclamation-triangle', prefix='fa')
 
     folium.Marker(
         location=[row['LATITUDE'], row['LONGITUDE']],
         tooltip=row['KABUPATEN'],
-        icon=folium.Icon(color='red', icon='home', prefix='fa'),
+        icon=icon,
     ).add_to(m).add_child(folium.Popup(popup_content, max_width=600))
 
 # Heatmap Layer
@@ -95,6 +108,7 @@ plugins.Fullscreen(position='topright', title='Fullscreen', title_cancel='Exit F
 draw = plugins.Draw()
 draw.add_to(m)
 
+# Adding Google Maps tiles
 def add_google_maps(m):
     tiles = "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
     attr = "Google Digital Satellite"
@@ -105,6 +119,7 @@ def add_google_maps(m):
     folium.TileLayer(tiles=label_tiles, attr=label_attr, name=label_attr, overlay=True, control=True).add_to(m)
 
     return m
+
 
 # Function for creating a heatmap with color theme selection
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
@@ -133,6 +148,7 @@ def calculate_population_difference(input_df, input_year):
     previous_year_data = input_df[input_df['TAHUN'] == input_year - 1].reset_index()
     selected_year_data['population_difference'] = selected_year_data['JUMLAH_LONGSOR'].sub(previous_year_data['JUMLAH_LONGSOR'], fill_value=0)
     return pd.concat([selected_year_data['KABUPATEN'], selected_year_data['TAHUN'], selected_year_data['JUMLAH_LONGSOR'], selected_year_data['population_difference']], axis=1).sort_values(by="population_difference", ascending=False)
+
 a1, a2, a3 = st.columns(3)
 
 with a1:
@@ -172,13 +188,13 @@ with a3:
 
 # Main Dashboard Panel
 # Create columns with a specified width ratio
-col1, col2 = st.columns((5, 2), gap='medium')
+col1, col2 = st.columns((5, 2.5), gap='medium')
 
 with col1:
-    with st.expander("Map", expanded=True):
         m = add_google_maps(m)
         m.add_child(folium.LayerControl(collapsed=False))
-        folium_static(m, width=850, height=450)
+        folium_static(m, width=850, height=520)
+
 
 with col2:
     # Filter the dataframe based on the selected year
@@ -227,4 +243,3 @@ with st.expander('Information', expanded=True):
         - :bar_chart: **Heatmap Visualization**: Peta panas yang menunjukkan distribusi longsor di berbagai daerah.
         - :chart_with_upwards_trend: **Landslide Trends**: Dinamika dan tren longsor, termasuk peningkatan/penurunan serta daerah dengan jumlah longsor tertinggi dan terendah dari tahun ke tahun.
     ''')
-
