@@ -176,7 +176,11 @@ def kmeans_page():
             # Use folium_static to display the Folium map
             folium_map = create_marker_map(st.session_state.df_clustered, selected_kabupaten)
             folium_static(folium_map, width=1240, height=600)
-
+            
+        with st.expander("SELECT DATA"):
+            selected_city = st.selectbox("Select ", df_clustered['KABUPATEN'])
+            selected_row = df_clustered[df_clustered['KABUPATEN'] == selected_city].squeeze()
+            
         # Graphs
         col1, col2, col3, col4 = st.columns(4)
         with col1:
