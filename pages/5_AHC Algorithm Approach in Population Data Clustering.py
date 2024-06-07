@@ -144,6 +144,8 @@ def ahc_page():
 
     # Dropdown for selecting the KABUPATEN
     selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', data['KABUPATEN'].unique())
+
+    silhouette_scores_df = calculate_silhouette_scores(df_clustered)
     
     # Perform Agglomerative Hierarchical Clustering based on selected features and linkage method
     if len(data) >= 2:
