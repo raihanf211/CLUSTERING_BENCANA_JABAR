@@ -178,7 +178,7 @@ def kmeans_page():
             folium_static(folium_map, width=1240, height=600)
             
         with st.expander("SELECT DATA"):
-            selected_city = st.selectbox("Select ", df_clustered['KABUPATEN'])
+            selected_city = st.selectbox("Select ", df_clustered['KABUPATEN'].unique())
             selected_row = df_clustered[df_clustered['KABUPATEN'] == selected_city].squeeze()
             
         # Graphs
