@@ -126,7 +126,10 @@ def kmeans_page():
 
     # Perform KMeans clustering
     df_clustered, elbow_data = kmeans_clustering(data_from_homepage, num_clusters)
-   
+    
+    # Dropdown for selecting the KABUPATEN
+    selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', df['KABUPATEN'].unique())
+
     # Calculate Silhouette Scores for a range of clusters
     silhouette_scores_df = calculate_silhouette_scores(data_from_homepage)
 
