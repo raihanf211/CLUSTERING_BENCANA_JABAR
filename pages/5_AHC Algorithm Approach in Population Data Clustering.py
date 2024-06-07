@@ -153,7 +153,12 @@ def ahc_page():
         st.warning("Not enough data points for clustering. Please select different criteria.")
         return
 
-    # Save the clustered data in session_state
+    # Standardize the features
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(data[['JUMLAH_LONGSOR', 'JIWA_TERDAMPAK', 'JIWA_MENINGGAL', 'RUSAK_TERDAMPAK', 'RUSAK_RINGAN', 'RUSAK_SEDANG', 'RUSAK_BERAT', 'TERTIMBUN', 'LATITUDE', 'LONGITUDE']])
+    
+    # Save the scaled features in session_state
+    st.session_state.scaled_features = scaled_features
     st.session_state.df_clustered = df_clustered
     st.session_state.selected_kabupaten = selected_kabupaten
 
@@ -194,7 +199,7 @@ def ahc_page():
     with tab2:
         with st.expander('Desa Maps View Analitycs Clustering', expanded=True):
             # Use folium_static to display the Folium map
-            folium_map = create_marker_map(st.session_state.df_clustered, st.session_state.selected_kabupaten, scaled_data)
+            folium_map = create_marker_map(st.session_state.df_clustered, st.session_state.selected_kabupaten, st.session_state.scaled_features)
             folium_static(folium_map, width=1240, height=600)
 
             # Graphs
@@ -219,7 +224,7 @@ def ahc_page():
         with col4:
             st.write("Dendrogram")
             # Generate dendrogram
-            linkage_matrix = linkage(scaled_data, method=linkage_method)
+            linkage_matrix = linkage(st.session_state.scaled_features, method=linkage_method)
             plt.figure(figsize=(10, 7))
             dendrogram(linkage_matrix)
             st.pyplot(plt)
