@@ -75,7 +75,7 @@ def add_google_maps(m):
     return m
 
 # Function to create Folium map with clustered markers
-def create_marker_map(df_clustered, selected_kabupaten):
+def create_marker_map(df_clustered, selected_kabupaten, scaled_data):
     # Set the width and height directly when creating the Folium map
     m = folium.Map(location=[df_clustered['LATITUDE'].mean(), df_clustered['LONGITUDE'].mean()], zoom_start=10, width=1240, height=600)
 
@@ -126,6 +126,7 @@ def create_marker_map(df_clustered, selected_kabupaten):
     add_google_maps(m)
 
     return m
+
 
 # Function to handle Agglomerative Hierarchical Clustering page
 def ahc_page():
@@ -193,7 +194,7 @@ def ahc_page():
     with tab2:
         with st.expander('Desa Maps View Analitycs Clustering', expanded=True):
             # Use folium_static to display the Folium map
-            folium_map = create_marker_map(st.session_state.df_clustered, st.session_state.selected_kabupaten)
+            folium_map = create_marker_map(st.session_state.df_clustered, st.session_state.selected_kabupaten, scaled_data)
             folium_static(folium_map, width=1240, height=600)
 
             # Graphs
