@@ -162,7 +162,10 @@ def ahc_page():
             cluster_data = df_clustered[df_clustered['cluster'] == cluster_num].reset_index(drop=True)
             cluster_data.insert(1, "Index", cluster_data.index)  # Add index column
             
-            with st.expander(f"Cluster {cluster_num + 1} Data Table - {landslide_category}", expanded=True):
+            # Hitung jumlah anggota klaster
+            num_members = cluster_data.shape[0]
+
+            with st.expander(f"Cluster {cluster_num + 1} Data Table - {landslide_category} ({num_members} Kabupaten/Kota)", expanded=True):
                 st.dataframe(cluster_data,
                             column_order=("Index", "KABUPATEN", "JUMLAH_LONGSOR", "cluster"),
                             hide_index=True,
