@@ -28,8 +28,13 @@ data = pd.read_csv('Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv
 # Function to perform Agglomerative Hierarchical Clustering based on selected features and linkage
 def ahc_clustering(data, n_clusters, selected_features, linkage_method):
     features = data[selected_features + ['LATITUDE', 'LONGITUDE']]
+    
+    # Standardize the features
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(features)
+    
     clusterer = AgglomerativeClustering(n_clusters=n_clusters, linkage=linkage_method)
-    data['cluster'] = clusterer.fit_predict(features)
+    data['cluster'] = clusterer.fit_predict(scaled_features)
 
     # Calculate centroid for each cluster
     centroids = data.groupby('cluster')[['JUMLAH_LONGSOR']].mean()
@@ -42,6 +47,7 @@ def ahc_clustering(data, n_clusters, selected_features, linkage_method):
     data['Landslide Category'] = data.apply(lambda row: 'Tingkat Rawan Rendah' if row['JUMLAH_LONGSOR'] < threshold_low else ('Tingkat Rawan Sedang' if row['JUMLAH_LONGSOR'] < threshold_high else 'Tingkat Rawan Tinggi'), axis=1)
     
     return data
+
 
 # Function to calculate silhouette scores for a range of cluster numbers
 def calculate_silhouette_scores(data, max_clusters=10, linkage_method='ward'):
