@@ -191,9 +191,9 @@ def ahc_page():
 
 
     with tab2:
-        with st.expander('Desa Maps View Analytics Clustering', expanded=True):
+        with st.expander('Desa Maps View Analitycs Clustering', expanded=True):
             # Use folium_static to display the Folium map
-            folium_map = create_marker_map(st.session_state.df_clustered)
+            folium_map = create_marker_map(st.session_state.df_clustered, selected_kabupaten)
             folium_static(folium_map, width=1240, height=600)
 
             # Graphs
