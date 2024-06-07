@@ -72,7 +72,7 @@ def add_google_maps(m):
 # Function to create Folium map with clustered markers
 def create_marker_map(df_clustered, selected_kabupaten, scaled_data):
     # Set the width and height directly when creating the Folium map
-    m = folium.Map(location=[df_clustered['LATITUDE'].mean(), df_clustered['LONGITUDE'].mean()], zoom_start=10, width=1240, height=600)
+    m = folium.Map(location=[df_clustered['LATITUDE'].mean(), df_clustered['LONGITUDE'].mean()], zoom_start=8, width=1240, height=600)
 
     # Add a marker for each data point
     for i, row in df_clustered.iterrows():
