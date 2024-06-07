@@ -67,7 +67,7 @@ def add_google_maps(m):
 
     return m
 
-def create_marker_map(df_clustered):
+def create_marker_map(df_clustered, selected_kabupaten):
     # Set the width and height directly when creating the Folium map
     m = folium.Map(location=[df_clustered['LATITUDE'].mean(), df_clustered['LONGITUDE'].mean()], zoom_start=10, width=1240, height=600)
 
@@ -96,14 +96,14 @@ def create_marker_map(df_clustered):
         """
 
         if row['KABUPATEN'] == selected_kabupaten:
-        icon = folium.Icon(color='blue', icon='exclamation-triangle', prefix='fa')
+            icon = folium.Icon(color='blue', icon='exclamation-triangle', prefix='fa')
         else:
-        icon = folium.Icon(color='red', icon='exclamation-triangle', prefix='fa')
+            icon = folium.Icon(color='red', icon='exclamation-triangle', prefix='fa')
         
         folium.Marker(
             location=[row['LATITUDE'], row['LONGITUDE']],
             tooltip=row['KABUPATEN'],
-            icon=folium.Icon(color='red', icon='home', prefix='fa'),
+            icon=icon,
         ).add_to(m).add_child(folium.Popup(popup_content, max_width=1240))
 
     # Heatmap Layer
