@@ -69,7 +69,7 @@ def add_google_maps(m):
     return m
 
 # Function to create Folium map with clustered markers
-def create_marker_map(df_clustered):
+def create_marker_map(df_clustered, selected_kabupaten):
     # Set the width and height directly when creating the Folium map
     m = folium.Map(location=[df_clustered['LATITUDE'].mean(), df_clustered['LONGITUDE'].mean()], zoom_start=10, width=1240, height=600)
 
@@ -105,7 +105,7 @@ def create_marker_map(df_clustered):
         folium.Marker(
             location=[row['LATITUDE'], row['LONGITUDE']],
             tooltip=row['KABUPATEN'],
-            icon=folium.Icon(color='red', icon='home', prefix='fa'),
+            icon=icon,  # Use the defined icon variable
         ).add_to(m).add_child(folium.Popup(popup_content, max_width=1240))
 
     # Heatmap Layer
@@ -127,21 +127,17 @@ def ahc_page():
     st.header("Agglomerative Hierarchical Clustering Page", anchor='center' if center else 'left')
 
     # Sidebar: Choose the number of clusters
-    num_clusters = st.sidebar.slider("Number of Clusters", min_value=2,     max_value=10, value=3)
+    num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=3)
 
     # Sidebar: Choose the linkage method
     linkage_method = st.sidebar.selectbox('Select Linkage Method', ['single', 'average', 'complete'])
 
-     # Dropdown for selecting the KABUPATEN
-    selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', df_clustered['KABUPATEN'].unique())
-    
-     # Ensure only numeric columns are selected for clustering
-    numeric_data = data.select_dtypes(include=['float64', 'int64'])
-    
-    # Standardize the data
-    scaler = StandardScaler()
-    scaled_data = scaler.fit_transform(numeric_data)
+    # Read the dataset
+    data = pd.read_csv('Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv')  # Change path to your new dataset
 
+    # Dropdown for selecting the KABUPATEN
+    selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', data['KABUPATEN'].unique())
+    
     # Perform Agglomerative Hierarchical Clustering based on selected features and linkage method
     if len(data) >= 2:
         df_clustered = ahc_clustering(data, num_clusters, [], linkage_method)  # Empty list for selected_features
@@ -150,12 +146,10 @@ def ahc_page():
         st.warning("Not enough data points for clustering. Please select different criteria.")
         return
 
-    # Calculate Silhouette Scores for a range of clusters
-    silhouette_scores_df = calculate_silhouette_scores(data, max_clusters=10, linkage_method=linkage_method)
-
     # Save the clustered data in session_state
     st.session_state.df_clustered = df_clustered
-    st.session_state.silhouette_scores_df = silhouette_scores_df
+    st.session_state.selected_kabupaten = selected_kabupaten
+
     tab1, tab2, tab3 = st.columns([1, 1, 1])
 
     tab1, tab2, tab3 = st.tabs(["DATASET", "VISUALISASI MAP", "SILHOUETTE SCORE"])
@@ -193,7 +187,7 @@ def ahc_page():
     with tab2:
         with st.expander('Desa Maps View Analitycs Clustering', expanded=True):
             # Use folium_static to display the Folium map
-            folium_map = create_marker_map(st.session_state.df_clustered, selected_kabupaten)
+            folium_map = create_marker_map(st.session_state.df_clustered, st.session_state.selected_kabupaten)
             folium_static(folium_map, width=1240, height=600)
 
             # Graphs
