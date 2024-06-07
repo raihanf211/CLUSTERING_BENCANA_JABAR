@@ -122,7 +122,6 @@ def create_marker_map(df_clustered, selected_kabupaten):
 def kmeans_page():
     st.header("KMeans Clustering Page", anchor='center')
 
-
     # Sidebar: Choose the number of clusters
     num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=3)
 
@@ -133,7 +132,7 @@ def kmeans_page():
     df_clustered, elbow_data = kmeans_clustering(data_from_homepage, num_clusters)
     
     # Dropdown for selecting the KABUPATEN
-    selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', df['KABUPATEN'].unique())
+    selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', df_clustered['KABUPATEN'].unique())
 
     # Calculate Silhouette Scores for a range of clusters
     silhouette_scores_df = calculate_silhouette_scores(data_from_homepage)
