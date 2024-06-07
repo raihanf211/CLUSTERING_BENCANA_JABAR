@@ -195,7 +195,7 @@ with col2:
                  column_order=("KABUPATEN", "JUMLAH_LONGSOR"),
                  hide_index=True,
                  width=500,
-                 height=450,
+                 height=529,
                  column_config={
                      "KABUPATEN": st.column_config.TextColumn(
                          "Area",
