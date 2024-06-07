@@ -180,6 +180,8 @@ def kmeans_page():
         with st.expander("SELECT DATA"):
             selected_city = st.selectbox("Select ", df_clustered['KABUPATEN'].unique())
             selected_row = df_clustered[df_clustered['KABUPATEN'] == selected_city].squeeze()
+            # Display additional information in a table
+            st.table(selected_row)
             
         # Graphs
         col1, col2, col3, col4 = st.columns(4)
