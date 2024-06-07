@@ -95,6 +95,11 @@ def create_marker_map(df_clustered):
         </div>
         """
 
+        if row['KABUPATEN'] == selected_kabupaten:
+        icon = folium.Icon(color='blue', icon='exclamation-triangle', prefix='fa')
+        else:
+        icon = folium.Icon(color='red', icon='exclamation-triangle', prefix='fa')
+        
         folium.Marker(
             location=[row['LATITUDE'], row['LONGITUDE']],
             tooltip=row['KABUPATEN'],
