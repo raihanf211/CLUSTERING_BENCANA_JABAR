@@ -9,7 +9,7 @@ import altair as alt
 
 # Set page configuration
 st.set_page_config(
-    page_title="Analisis Bencana Longsor Di Provinsi Jawa Barat",
+    page_title="Analisis Clustering Kepadatan Penduduk",
     layout="wide",  # Set layout to wide for full-width content
     initial_sidebar_state="collapsed",  # Collapse the sidebar by default
 )
@@ -18,8 +18,12 @@ with open('style.css')as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
 
-# Aplikasi Streamlit
+# Title of the application
 st.title('ANALISIS BENCANA LONGSOR JAWA BARAT')
+
+# Adding a divider line
+st.divider()
+
 
 # Load your DataFrame from DATA_JABAR.csv
 file_path = 'UPDATE-Selection-Dataset_Longsor 2021 - 2023 - PROV JABAR.csv'
@@ -75,12 +79,10 @@ for i, row in df[df['TAHUN'] == selected_year].iterrows():
 """
 
     folium.Marker(
-    location=[row['LATITUDE'], row['LONGITUDE']],
-    tooltip=row['KABUPATEN'],
-    icon=folium.Icon(color='yellow', icon='exclamation-triangle', prefix='fa'),  # Menggunakan ikon untuk longsor
-).add_to(m).add_child(folium.Popup(popup_content, max_width=600))
-
-
+        location=[row['LATITUDE'], row['LONGITUDE']],
+        tooltip=row['KABUPATEN'],
+        icon=folium.Icon(color='red', icon='home', prefix='fa'),
+    ).add_to(m).add_child(folium.Popup(popup_content, max_width=600))
 
 # Heatmap Layer
 heat_data = [[row['LATITUDE'], row['LONGITUDE']] for _, row in df[df['TAHUN'] == selected_year].iterrows()]
@@ -131,11 +133,9 @@ def calculate_population_difference(input_df, input_year):
     previous_year_data = input_df[input_df['TAHUN'] == input_year - 1].reset_index()
     selected_year_data['population_difference'] = selected_year_data['JUMLAH_LONGSOR'].sub(previous_year_data['JUMLAH_LONGSOR'], fill_value=0)
     return pd.concat([selected_year_data['KABUPATEN'], selected_year_data['TAHUN'], selected_year_data['JUMLAH_LONGSOR'], selected_year_data['population_difference']], axis=1).sort_values(by="population_difference", ascending=False)
+a1, a2, a3 = st.columns(3)
 
-# Main Dashboard Panel
-col = st.columns((1.5, 5, 2), gap='medium')
-
-with col[0]:
+with a1:
     df_population_difference_sorted = calculate_population_difference(df, selected_year)
     if selected_year > 2020:
         first_state_name = df_population_difference_sorted['KABUPATEN'].iloc[0]
@@ -146,7 +146,7 @@ with col[0]:
         first_state_population = '-'
         first_state_delta = ''
     st.metric(label=first_state_name, value=first_state_population, delta=first_state_delta)
-
+with a2:
     if selected_year > 2020:
         last_state_name = df_population_difference_sorted['KABUPATEN'].iloc[-1]
         last_state_population = format_number(int(df_population_difference_sorted['JUMLAH_LONGSOR'].iloc[-1]))   
@@ -156,7 +156,7 @@ with col[0]:
         last_state_population = '-'
         last_state_delta = ''
     st.metric(label=last_state_name, value=last_state_population, delta=last_state_delta)
-
+with a3:
     if selected_year > 2020:
         total_landslides_selected_year = df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].sum()
         total_landslides_last_year = df[df['TAHUN'] == selected_year - 1]['JUMLAH_LONGSOR'].sum()
@@ -170,14 +170,17 @@ with col[0]:
     else:
         st.metric(label="-", value="-", delta="")
 
+# Main Dashboard Panel
+# Create columns with a specified width ratio
+col1, col2 = st.columns((5, 2), gap='medium')
 
-with col[1]:
-    with st.container(border=True):
+with col1:
+    with st.expander("Map", expanded=True):
         m = add_google_maps(m)
         m.add_child(folium.LayerControl(collapsed=False))
-        folium_static(m, width=700, height=450)
+        folium_static(m, width=850, height=450)
 
-with col[2]:
+with col2:
     # Filter the dataframe based on the selected year
     df_filtered = df[df['TAHUN'] == selected_year]
     
@@ -192,6 +195,7 @@ with col[2]:
                  column_order=("KABUPATEN", "JUMLAH_LONGSOR"),
                  hide_index=True,
                  width=500,
+                 height=450,
                  column_config={
                      "KABUPATEN": st.column_config.TextColumn(
                          "Area",
@@ -212,39 +216,15 @@ with st.expander("HeatMap", expanded=False):
 
     st.altair_chart(heatmap_chart, use_container_width=True)
 
-# Calculate total landslides for the selected year
-total_landslides_selected_year = df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].sum()
-
-# Cek apakah ada data yang sesuai dengan tahun yang dipilih
-if not df[df['TAHUN'] == selected_year].empty:
-    # Mendapatkan nama kota dengan jumlah longsor tertinggi dan terendah
-    most_affected_city = df[df['TAHUN'] == selected_year].loc[df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].idxmax()]['KABUPATEN']
-    least_affected_city = df[df['TAHUN'] == selected_year].loc[df[df['TAHUN'] == selected_year]['JUMLAH_LONGSOR'].idxmin()]['KABUPATEN']
-else:
-    most_affected_city = "Data tidak tersedia"
-    least_affected_city = "Data tidak tersedia"
-
-# Calculate total population affected for the selected year
-total_population_affected = df[df['TAHUN'] == selected_year]['JIWA_TERDAMPAK'].sum()
-
-# Calculate total infrastructure damage for the selected year
-total_infrastructure_damage = df[df['TAHUN'] == selected_year]['RUSAK_TERDAMPAK'].sum()
-
-with st.expander('Informasi', expanded=True):
-    st.info(f'''
-        - **Sumber Data**: [BARATA Badan Penanggulangan Bencana Daerah Provinsi Jawa Barat](https://barata.jabarprov.go.id).
-        - :orange[**Area Prioritas Berdasarkan Longsor**]: Kabupaten dengan jumlah longsor tertinggi untuk tahun yang dipilih adalah {most_affected_city}, sedangkan yang terendah adalah {least_affected_city}.
-        - :orange[**Perubahan Longsor yang Signifikan**]: Area dengan peningkatan atau penurunan jumlah longsor terbesar dari tahun sebelumnya.
-        - :information_source: **Total Longsor**: Total jumlah kejadian longsor pada tahun yang dipilih adalah {total_landslides_selected_year}.
-        - :information_source: **Populasi Terdampak**: Total jumlah orang yang terdampak longsor pada tahun yang dipilih adalah {total_population_affected}.
-        - :information_source: **Kerusakan Infrastruktur**: Rincian kerusakan infrastruktur akibat longsor (ringan, sedang, berat) pada tahun yang dipilih adalah {total_infrastructure_damage}.
-        - :bar_chart: **Visualisasi Peta Panas**: Peta panas yang menunjukkan distribusi longsor di berbagai area.
-        - :chart_with_upwards_trend: **Tren Longsor**: Dinamika dan tren longsor, termasuk peningkatan/penurunan dan area dengan jumlah longsor tertinggi dan terendah setiap tahunnya.
+with st.expander('Information', expanded=True):
+    st.write('''
+        - **Data Sumber**: [Data Longsor Jawa Barat](your_data_source_link).
+        - :orange[**Top Areas by Landslides**]: Kabupaten dengan jumlah longsor terbanyak pada tahun yang dipilih.
+        - :orange[**Extreme Landslide Changes**]: Daerah dengan peningkatan dan penurunan jumlah longsor terbesar dari tahun sebelumnya.
+        - :information_source: **Total Landslides**: Jumlah total longsor pada tahun yang dipilih.
+        - :information_source: **Affected Population**: Jumlah total populasi yang terdampak oleh longsor pada tahun yang dipilih.
+        - :information_source: **Infrastructure Damage**: Rincian kerusakan infrastruktur akibat longsor (ringan, sedang, berat) pada tahun yang dipilih.
+        - :bar_chart: **Heatmap Visualization**: Peta panas yang menunjukkan distribusi longsor di berbagai daerah.
+        - :chart_with_upwards_trend: **Landslide Trends**: Dinamika dan tren longsor, termasuk peningkatan/penurunan serta daerah dengan jumlah longsor tertinggi dan terendah dari tahun ke tahun.
     ''')
-
-
-
-
-
-
 
