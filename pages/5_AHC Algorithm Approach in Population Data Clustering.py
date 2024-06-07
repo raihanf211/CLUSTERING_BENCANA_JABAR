@@ -132,6 +132,9 @@ def ahc_page():
     # Sidebar: Choose the linkage method
     linkage_method = st.sidebar.selectbox('Select Linkage Method', ['single', 'average', 'complete'])
 
+     # Dropdown for selecting the KABUPATEN
+    selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', df_clustered['KABUPATEN'].unique())
+    
      # Ensure only numeric columns are selected for clustering
     numeric_data = data.select_dtypes(include=['float64', 'int64'])
     
