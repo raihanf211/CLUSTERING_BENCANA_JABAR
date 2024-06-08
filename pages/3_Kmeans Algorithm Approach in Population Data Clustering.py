@@ -156,7 +156,7 @@ def kmeans_page():
             # Hitung jumlah anggota klaster
             num_members = cluster_data.shape[0]
 
-            with st.expander(f"Cluster {cluster_num + 1} Data Table - {landslide_category} ({num_members} Kabupaten/Kota)", expanded=True):
+            with st.expander(f"Cluster {cluster_num + 0} Data Table - {landslide_category} ({num_members} Kabupaten/Kota)", expanded=True):
                 st.dataframe(cluster_data,
                             column_order=("Index", "KABUPATEN", "JUMLAH_LONGSOR", "cluster"),
                             hide_index=True,
