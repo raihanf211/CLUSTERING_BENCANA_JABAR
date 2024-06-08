@@ -188,7 +188,7 @@ with a3:
 
 # Main Dashboard Panel
 # Create columns with a specified width ratio
-col1, col2 = st.columns((5, 2.5), gap='medium')
+col1, col2 = st.columns((5, 2), gap='medium')
 
 with col1:
         m = add_google_maps(m)
