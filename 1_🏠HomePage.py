@@ -89,7 +89,7 @@ for i, row in df[df['TAHUN'] == selected_year].iterrows():
     if row['KABUPATEN'] == selected_kabupaten:
         icon = folium.Icon(color='red', icon='exclamation-triangle', prefix='fa')
     else:
-        icon = folium.Icon(color='orange', icon='exclamation-triangle', prefix='fa')
+        icon = folium.Icon(color='blue', icon='exclamation-triangle', prefix='fa')
 
     folium.Marker(
         location=[row['LATITUDE'], row['LONGITUDE']],
@@ -233,7 +233,7 @@ with st.expander("HeatMap", expanded=False):
     st.altair_chart(heatmap_chart, use_container_width=True)
 
 with st.expander('Information', expanded=True):
-    st.write('''
+    st.info('''
         - **Data Sumber**: [Data Longsor Jawa Barat](your_data_source_link).
         - :orange[**Top Areas by Landslides**]: Kabupaten dengan jumlah longsor terbanyak pada tahun yang dipilih.
         - :orange[**Extreme Landslide Changes**]: Daerah dengan peningkatan dan penurunan jumlah longsor terbesar dari tahun sebelumnya.
