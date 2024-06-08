@@ -67,9 +67,9 @@ def add_google_maps(m):
 
     return m
 
-def create_marker_map(df_clustered, selected_kabupaten):
+def create_marker_map(df_clustered):
     # Set the width and height directly when creating the Folium map
-    m = folium.Map(location=[df_clustered['LATITUDE'].mean(), df_clustered['LONGITUDE'].mean()], zoom_start=8, width=1240, height=600)
+    m = folium.Map(location=[df_clustered['LATITUDE'].mean(), df_clustered['LONGITUDE'].mean()], zoom_start=10, width=1240, height=600)
 
     # Add a marker for each data point
     for i, row in df_clustered.iterrows():
@@ -95,15 +95,10 @@ def create_marker_map(df_clustered, selected_kabupaten):
         </div>
         """
 
-        if row['KABUPATEN'] == selected_kabupaten:
-            icon = folium.Icon(color='red', icon='exclamation-triangle', prefix='fa')
-        else:
-            icon = folium.Icon(color='orange', icon='exclamation-triangle', prefix='fa')
-        
         folium.Marker(
             location=[row['LATITUDE'], row['LONGITUDE']],
             tooltip=row['KABUPATEN'],
-            icon=icon,
+            icon=folium.Icon(color='red', icon='home', prefix='fa'),
         ).add_to(m).add_child(folium.Popup(popup_content, max_width=1240))
 
     # Heatmap Layer
@@ -118,22 +113,52 @@ def create_marker_map(df_clustered, selected_kabupaten):
 
     return m
 
+
+def display_clustering_summary(df_clustered, num_clusters):
+    with st.expander('Informasi', expanded=True):
+        summary = f'''
+        Hasil clustering menggunakan KMeans menghasilkan beberapa klaster berdasarkan data bencana longsor di Provinsi Jawa Barat. Berikut adalah kesimpulan dan informasi penting dari hasil clustering:
+
+        1. **Jumlah Klaster**: Data dikelompokkan menjadi {num_clusters} klaster. Setiap klaster memiliki karakteristik yang berbeda-beda terkait jumlah kejadian longsor dan dampaknya.
+
+        2. **Kategori Tingkat Rawan Bencana**: 
+           - **Tingkat Rawan Rendah**: Klaster yang memiliki rata-rata kejadian longsor yang rendah.
+           - **Tingkat Rawan Sedang**: Klaster dengan rata-rata kejadian longsor yang sedang.
+           - **Tingkat Rawan Tinggi**: Klaster dengan rata-rata kejadian longsor yang tinggi.
+
+        3. **Klaster Prioritas**: Klaster {', '.join(map(str, df_clustered[df_clustered['Landslide Category'] == 'Tingkat Rawan Tinggi']['cluster'].unique()))} termasuk dalam kategori Tingkat Rawan Tinggi dan perlu mendapatkan perhatian lebih dalam mitigasi dan penanganan bencana.
+
+        4. **Perubahan Signifikan**: Beberapa area menunjukkan perubahan signifikan dalam jumlah kejadian longsor dari tahun sebelumnya, baik peningkatan maupun penurunan.
+
+        5. **Visualisasi Peta dan Grafik**:
+           - **Peta Korelasi dan Peta Panas**: Menampilkan distribusi kejadian longsor di berbagai area.
+           - **Grafik Tren**: Menampilkan tren kenaikan atau penurunan kejadian longsor di setiap klaster, membantu dalam mengidentifikasi area dengan perubahan signifikan.
+
+        6. **Rata-rata dan Modus Kejadian Longsor**:
+           - **Rata-rata Kejadian Longsor**: Menunjukkan rata-rata jumlah kejadian longsor untuk tahun yang dipilih adalah {df_clustered['JUMLAH_LONGSOR'].mean():.2f}.
+           - **Rata-rata Kejadian Longsor di Area Prioritas**: Rata-rata jumlah kejadian longsor di area yang termasuk dalam klaster prioritas.
+           - **Modus Kejadian Longsor di Area Prioritas**: Menampilkan jumlah kejadian longsor yang paling sering terjadi di area prioritas adalah {df_clustered['JUMLAH_LONGSOR'].mode()[0]}.
+
+        Dengan hasil clustering ini, diharapkan dapat memberikan gambaran yang lebih jelas mengenai distribusi dan karakteristik kejadian longsor di Provinsi Jawa Barat, sehingga dapat digunakan sebagai dasar dalam perencanaan mitigasi dan penanggulangan bencana yang lebih efektif.
+        '''
+        
+        st.info(summary)
+
 # Function to handle KMeans page
 def kmeans_page():
     st.header("KMeans Clustering Page", anchor='center')
 
+    st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
+
     # Sidebar: Choose the number of clusters
-    num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=2)
+    num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=3)
 
     # Load data from the home page
-    data_from_homepage = load_data('Jumlah-2021 - 2023 -Lengkap-Dataset_Longsor - PROV JABAR.csv')  # Replace with your actual data file path
+    data_from_homepage = load_data('DATA_JABAR.csv')  # Replace with your actual data file path
 
     # Perform KMeans clustering
     df_clustered, elbow_data = kmeans_clustering(data_from_homepage, num_clusters)
-    
-    # Dropdown for selecting the KABUPATEN
-    selected_kabupaten = st.sidebar.selectbox('Select Kabupaten', df_clustered['KABUPATEN'].unique())
-
+   
     # Calculate Silhouette Scores for a range of clusters
     silhouette_scores_df = calculate_silhouette_scores(data_from_homepage)
 
@@ -153,10 +178,10 @@ def kmeans_page():
             cluster_data = df_clustered[df_clustered['cluster'] == cluster_num].reset_index(drop=True)
             cluster_data.insert(1, "Index", cluster_data.index)  # Add index column
             
-            # Hitung jumlah anggota klaster
+             # Hitung jumlah anggota klaster
             num_members = cluster_data.shape[0]
 
-            with st.expander(f"Cluster {cluster_num + 0} Data Table - {landslide_category} ({num_members} Kabupaten/Kota)", expanded=True):
+            with st.expander(f"Cluster {cluster_num + 1} Data Table - {landslide_category} ({num_members} Kabupaten/Kota)", expanded=True):
                 st.dataframe(cluster_data,
                             column_order=("Index", "KABUPATEN", "JUMLAH_LONGSOR", "cluster"),
                             hide_index=True,
@@ -172,17 +197,16 @@ def kmeans_page():
                             )
 
     with tab2:
-        with st.expander('Kabupaten/Kota Maps View Analitycs Clustering', expanded=True):
+        with st.expander('Desa Maps View Analitycs Clustering', expanded=True):
             # Use folium_static to display the Folium map
-            folium_map = create_marker_map(st.session_state.df_clustered, selected_kabupaten)
+            folium_map = create_marker_map(st.session_state.df_clustered)
             folium_static(folium_map, width=1240, height=600)
-            
+
         with st.expander("SELECT DATA"):
-            selected_city = st.selectbox("Select ", df_clustered['KABUPATEN'].unique())
+            selected_city = st.selectbox("Select ", df_clustered['KABUPATEN'])
             selected_row = df_clustered[df_clustered['KABUPATEN'] == selected_city].squeeze()
             # Display additional information in a table
             st.table(selected_row)
-            
         # Graphs
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -215,40 +239,31 @@ def kmeans_page():
                 )
                 st.plotly_chart(fig_elbow, use_container_width=True)
                 
-        with st.expander('Informasi', expanded=True):
-            st.write('''
-            - **Clastering Data Bencana Longsor:** Data telah dikelompokkan ke dalam beberapa klaster berdasarkan jumlah longsor dan faktor lainnya.
-            - **Peta Klastering:** Titik-titik merah menandakan lokasi longsor di peta, dengan warna yang berbeda-beda sesuai dengan klaster.
-            - **Histogram:** Histogram menunjukkan distribusi jumlah longsor di setiap klaster.
-            - **Donut Chart:** Grafik donat menunjukkan proporsi jumlah longsor dalam setiap klaster.
-            - **Scatterplot:** Scatterplot memvisualisasikan lokasi longsor dengan sumbu x dan y sebagai koordinat lintang dan bujur.
-            - **Elbow Method:** Grafik ini membantu menentukan jumlah klaster yang optimal berdasarkan metode elbow.
-            ''')
+            # Call the function to display the summary after clustering
+        display_clustering_summary(df_clustered, num_clusters)
 
     with tab3:
         col = st.columns((5, 1.5), gap='medium')
-    
         with col[0]:
-            st.expander('Kabupaten/Kota Maps View Silhouette Score Clustering', expanded=True)
+            st.expander('Desa Maps View Silhouette Score Clustering', expanded=True)
             # Line plot for silhouette scores
             silhouette_line_plot = px.line(silhouette_scores_df, x='num_clusters', y='silhouette_score',
                                            markers=True, labels={'num_clusters': 'Number of Clusters', 'silhouette_score': 'Silhouette Score'})
             st.plotly_chart(silhouette_line_plot, use_container_width=True)
-    
         with col[1]:
             st.write(silhouette_scores_df)
 
-        with st.expander('Informasi', expanded=True):
-            st.info('''
-            - Data: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](http://barata.jabarprov.go.id/).
-            - :orange[**Evaluasi Kualitas Clastering dengan Silhouette Score**]: Silhouette Score memberikan gambaran tentang seberapa baik data dapat dikelompokkan secara alami. Semakin tinggi nilai Silhouette Score, semakin jelas pemisahan antara klaster, yang menunjukkan struktur yang lebih baik dalam data. Namun, penting untuk dicatat bahwa Silhouette Score juga dapat membantu mengidentifikasi apakah ada klaster yang mungkin terlalu rapat (nilai mendekati 0) atau terlalu longgar (nilai negatif).
-            - :chart_with_upwards_trend: **Perbaikan Klastering**: Dengan memonitor perubahan Silhouette Score seiring dengan penambahan atau pengurangan jumlah klaster, pengguna dapat mengeksplorasi bagaimana perubahan konfigurasi klastering dapat mempengaruhi kualitas klastering secara keseluruhan.
-            - :star: **Hasil Terbaik**: Klastering terbaik ditemukan saat menggunakan {best_cluster_number} klaster, dengan nilai Silhouette Score tertinggi mencapai {best_silhouette_score:.3f}. Ini menunjukkan struktur klaster yang sangat baik dalam data Anda!
-            ''')
-
-
-
-
+        with st.expander('Informasi Skor Siluet', expanded=True):
+            st.write('''
+                - **Ikhtisar Skor Siluet**: Skor Siluet adalah ukuran seberapa mirip suatu objek dengan klasternya sendiri (koherensi) dibandingkan dengan klaster lain (pemisahan). Skor tersebut berkisar dari -1 hingga 1, di mana nilai tinggi menunjukkan bahwa objek tersebut cocok dengan klasternya sendiri dan tidak cocok dengan klaster tetangga.
+                - **Interpretasi Skor Siluet**:
+                - Skor mendekati 1 menunjukkan bahwa objek terklasifikasi dengan baik.
+                - Skor mendekati 0 menunjukkan adanya tumpang tindih antar klaster.
+                - Skor mendekati -1 menunjukkan bahwa objek salah terklasifikasi.
+                - **Jumlah Optimal Klaster**: Cari puncak atau titik tinggi dalam plot Skor Siluet untuk mengidentifikasi jumlah optimal klaster. Skor yang lebih tinggi menunjukkan pemisahan dan koherensi klaster yang lebih baik.
+                - **Penggunaan**: Gunakan Skor Siluet untuk mengevaluasi kualitas algoritma pengelompokan Anda dan menentukan jumlah klaster yang sesuai untuk dataset Anda.
+                - **Sumber Data**: [Sumber Data](link_ke_sumber_data_anda).
+                ''')
 
 # Run the Streamlit app
 if __name__ == "__main__":
