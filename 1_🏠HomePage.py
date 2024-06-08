@@ -87,9 +87,9 @@ for i, row in df[df['TAHUN'] == selected_year].iterrows():
     """
 
     if row['KABUPATEN'] == selected_kabupaten:
-        icon = folium.Icon(color='blue', icon='exclamation-triangle', prefix='fa')
-    else:
         icon = folium.Icon(color='red', icon='exclamation-triangle', prefix='fa')
+    else:
+        icon = folium.Icon(color='orange', icon='exclamation-triangle', prefix='fa')
 
     folium.Marker(
         location=[row['LATITUDE'], row['LONGITUDE']],
