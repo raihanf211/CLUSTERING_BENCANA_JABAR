@@ -229,7 +229,7 @@ def kmeans_page():
         col = st.columns((5, 1.5), gap='medium')
     
         with col[0]:
-            st.expander('Desa Maps View Silhouette Score Clustering', expanded=True)
+            st.expander('Kabupaten/Kota Maps View Silhouette Score Clustering', expanded=True)
             # Line plot for silhouette scores
             silhouette_line_plot = px.line(silhouette_scores_df, x='num_clusters', y='silhouette_score',
                                            markers=True, labels={'num_clusters': 'Number of Clusters', 'silhouette_score': 'Silhouette Score'})
