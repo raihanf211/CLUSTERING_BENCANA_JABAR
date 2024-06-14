@@ -95,7 +95,8 @@ with st.expander("**Tentang Analisis Klaster Bencana Tanah Longsor di Kabupaten 
     st.markdown('''
     
     **Metode Klaster:🌐**
-    - Metode clustering digunakan untuk mengelompokkan daerah rawan bencana di kabupaten dan kota Provinsi Jawa Barat, berdasarkan atribut:
+    - Metode clustering digunakan untuk mengelompokkan daerah rawan bencana 
+    - di kabupaten dan kota Provinsi Jawa Barat, berdasarkan atribut:
       - Jumlah kejadian bencana longsor
       - Jiwa terdampak
       - Jiwa meninggal
