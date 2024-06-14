@@ -117,17 +117,3 @@ with st.expander("**Tentang Analisis Klaster Bencana Tanah Longsor di Kabupaten 
     - Metode ini memberikan wawasan yang berharga untuk mencapai perencanaan mitigasi optimal dan pengembangan kebijakan efektif tingkat provinsi, infrastruktur, serta upaya peningkatan kesiapsiagaan, kecepatan, dan ketepatan penanggulangan antisipasi bencana di Provinsi Jawa Barat.
     ''')
 
-st.info('''
-Hasil analisis klaster bencana longsor di Kabupaten dan Kota di Jawa Barat dapat memberikan wawasan yang berharga untuk:
-
-* **Memahami** pola dan distribusi bencana longsor.
-* **Mendukung** pengambilan keputusan dalam manajemen bencana.
-* **Mengarahkan** strategi mitigasi yang lebih efektif.
-
-Analisis ini dapat menjadi **alat penting** bagi **pemerintah daerah**, **peneliti**, dan **stakeholder lainnya** dalam:
-
-* **Merumuskan** kebijakan mitigasi bencana yang tepat.
-* **Menyusun** strategi responsif terhadap risiko longsor di Jawa Barat.
-
-Dengan menggunakan teknik analisis klaster, kita dapat mengidentifikasi pola dan karakteristik yang berbeda dalam distribusi bencana longsor, serta merumuskan langkah-langkah mitigasi yang tepat untuk melindungi masyarakat dan lingkungan.
-''', icon="🧐")
