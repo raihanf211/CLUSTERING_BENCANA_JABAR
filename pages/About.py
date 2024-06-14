@@ -30,7 +30,7 @@ html_content = f"""
         -webkit-font-smoothing: auto;
     }}
     h2 {{
-        color: #de3f53;
+        color: #ffffff;
         margin-top: 0px;
         border-bottom: solid 5px;
         text-align: center;
@@ -45,8 +45,8 @@ html_content = f"""
 
     <h2>Pengelompokan Daerah Rawan Bencana Tanah Longsor Kabupaten/Kota di Provinsi Jawa Barat</h2>
     
-    <p>Tujuan dari penelitian ini adalah untuk mengelompokkan (clustering) dan mengimplementasikan tampilan antarmuka dengan visualisasi pemetaan daerah rawan bencana tanah longsor di Provinsi Jawa Barat.</p> 
-    <p>Sehingga penelitian ini dapat menjadi referensi dalam mencapai perencanaan mitigasi optimal, pengembangan kebijakan efektif tingkat provinsi, infrastruktur, dan upaya peningkatan kesiapsiagaan, kecepatan, serta ketepatan penanggulangan antisipasi bencana di Provinsi Jawa Barat.</p>
+    <p> Dalam menghadapi bencana alam, kesiapsiagaan menjadi kunci utama dalam meminimalisir dampak yang ditimbulkan. Masyarakat khususnya di Jawa Barat sebagai elemen terdepan harus memiliki kemampuan untuk bersiap dan bertindak saat bencana terjadi. </p> 
+    <p> Kecepatan dan ketepatan dalam penanggulangan bencana sangatlah krusial untuk menjamin keberhasilan prosesnya. Untuk mengurangi semua kerentanan fisik dan sosial ekonomi, kesiapsiagaan bencana menjadi pendekatan penting.</p>
 """
 
 # Tampilkan konten HTML
@@ -92,9 +92,7 @@ with c2:
 # Ekspander untuk informasi tentang clustering bencana longsor
 with st.expander("**Tentang Analisis Klaster Bencana Tanah Longsor di Kabupaten dan Kota di Provinsi Jawa Barat**"):
     st.markdown('''
-    **Pendahuluan: 📊**
-    Dalam menghadapi bencana alam, kesiapsiagaan menjadi kunci utama dalam meminimalisir dampak yang ditimbulkan. Masyarakat khususnya di Jawa Barat sebagai elemen terdepan harus memiliki kemampuan untuk bersiap dan bertindak saat bencana terjadi. Kecepatan dan ketepatan dalam penanggulangan bencana sangatlah krusial untuk menjamin keberhasilan prosesnya. Untuk mengurangi semua kerentanan fisik dan sosial ekonomi, kesiapsiagaan bencana menjadi pendekatan penting.
-
+    
     **Pendekatan Utama: 🌐**
 
     **Metode Klaster:**
