@@ -229,8 +229,7 @@ with c1:
         st.pyplot()
 
         st.write(f"Cophenetic Correlation Coefficient (CCC) untuk Dendrogram AHC (single): {ccc_single:.4f}")
-        st.write(f"Jumlah klaster optimal untuk metode linkage single: {len(set(labels_single))}")
-
+        
 with c2:
     with st.expander("⬇ DENDROGRAM COMPLETE"):
         # Visualisasi Dendrogram untuk Complete
@@ -242,8 +241,7 @@ with c2:
         st.pyplot()
 
         st.write(f"Cophenetic Correlation Coefficient (CCC) untuk Dendrogram AHC (Complete): {ccc_complete:.4f}")
-        st.write(f"Jumlah klaster optimal untuk metode linkage Complete: {len(set(labels_complete))}")
-
+        
 with c3:
     with st.expander("⬇ DENDROGRAM AVERAGE"):
         # Visualisasi Dendrogram untuk Average
@@ -255,8 +253,7 @@ with c3:
         st.pyplot()
 
         st.write(f"Cophenetic Correlation Coefficient (CCC) untuk Dendrogram AHC (Average): {ccc_average:.4f}")
-        st.write(f"Jumlah klaster optimal untuk metode linkage Average: {len(set(labels_average))}")
-
+      
    
 
 # Assuming X_ahc is already defined
