@@ -19,7 +19,7 @@ with open('style.css') as f:
 
 
 # Title of the application
-st.title('ANALISIS DAERAH RAWAN BENCANA TANAH LONGSOR KABUPATEN/KOTA DI PROVINSI JAWA BARAT')
+st.title('ANALISIS PENGELOMPOKKAN DAERAH RAWAN BENCANA TANAH LONGSOR KABUPATEN/KOTA DI PROVINSI JAWA BARAT')
 
 # Adding a divider line
 st.divider()
