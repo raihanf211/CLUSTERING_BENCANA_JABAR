@@ -231,9 +231,10 @@ def ahc_page():
             linkage_matrix = linkage(st.session_state.scaled_features, method=linkage_method)
             plt.figure(figsize=(10, 7))
             dendrogram(linkage_matrix)
-            st.pyplot(plt)
             plt.xlabel('Indeks Data')
             plt.ylabel('Jarak')
+            st.pyplot(plt)
+           
 
 
 
