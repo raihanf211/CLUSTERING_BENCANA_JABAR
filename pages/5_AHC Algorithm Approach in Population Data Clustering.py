@@ -232,6 +232,8 @@ def ahc_page():
             plt.figure(figsize=(10, 7))
             dendrogram(linkage_matrix)
             st.pyplot(plt)
+            plt.xlabel('Indeks Data')
+            plt.ylabel('Jarak')
 
 
 
