@@ -44,6 +44,7 @@ html_content = f"""
     </style>
 
     <h2>Pengelompokan Daerah Rawan Bencana Tanah Longsor Kabupaten/Kota di Provinsi Jawa Barat</h2>
+
     
     <p> Dalam menghadapi bencana alam, kesiapsiagaan menjadi kunci utama dalam meminimalisir dampak yang ditimbulkan. Masyarakat khususnya di Jawa Barat sebagai elemen terdepan harus memiliki kemampuan untuk bersiap dan bertindak saat bencana terjadi. </p> 
     <p> Kecepatan dan ketepatan dalam penanggulangan bencana sangatlah krusial untuk menjamin keberhasilan prosesnya. Untuk mengurangi semua kerentanan fisik dan sosial ekonomi, kesiapsiagaan bencana menjadi pendekatan penting.</p>
@@ -93,9 +94,7 @@ with c2:
 with st.expander("**Tentang Analisis Klaster Bencana Tanah Longsor di Kabupaten dan Kota di Provinsi Jawa Barat**"):
     st.markdown('''
     
-    **Pendekatan Utama: 🌐**
-
-    **Metode Klaster:**
+    **Metode Klaster:🌐**
     - Metode clustering digunakan untuk mengelompokkan daerah rawan bencana di kabupaten dan kota Provinsi Jawa Barat, berdasarkan atribut:
       - Jumlah kejadian bencana longsor
       - Jiwa terdampak
@@ -107,8 +106,8 @@ with st.expander("**Tentang Analisis Klaster Bencana Tanah Longsor di Kabupaten 
       - Tertimbun
 
     **Sumber Data: 📈**
-    - Data yang digunakan dalam analisis ini mencakup data jumlah menurut Kabupaten/Kota yang mengalami kejadian bencana tanah longsor di Provinsi Jawa Barat.
-    - Bersumber dari website BARATA yang dikelola oleh Badan Penanggulangan Bencana Daerah Provinsi Jawa Barat
+    - Data yang digunakan dalam analisis ini mencakup data jumlah menurut Kabupaten/Kota yang mengalami kejadian bencana tanah longsor di Provinsi Jawa Barat pada tahun 2021-2023.
+    - Bersumber dari website BARATA yang dikelola oleh Badan Penanggulangan Bencana Daerah Provinsi Jawa Barat.
 
     **Tujuan: 🎯**
     - Tujuan utama adalah mengetahui pemetaan dan pengelompokan daerah rawan bencana longsor di kabupaten dan kota di Provinsi Jawa Barat. 
