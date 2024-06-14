@@ -46,6 +46,8 @@ html_content = f"""
     <h2>Pengelompokan Daerah Rawan Bencana Tanah Longsor Kabupaten/Kota di Provinsi Jawa Barat</h2>
 
     
+    <p> Berdasarkan data Badan Nasional Penanggulangan Bencana (BNPB) melaporkan ada 3.531 bencana alam. Berikut daftar lengkap 10 provinsi yang paling banyak mengalami bencana alam di Indonesia pada 2022 diantaranya, Jawa Barat 823 kejadian.</p>
+    <p> Berdasarkan data Badan Nasional Penanggulangan Bencana (BNPB), Jawa Barat  menjadi provinsi dengan bencana tanah longsor terbanyak dalam sedekade terakhir. Kejadian tanah longsor selama periode 2014-2023. Diantaranya Jawa Barat 2.440 Kejadian.</p>
     <p> Dalam menghadapi bencana alam, kesiapsiagaan menjadi kunci utama dalam meminimalisir dampak yang ditimbulkan. Masyarakat khususnya di Jawa Barat sebagai elemen terdepan harus memiliki kemampuan untuk bersiap dan bertindak saat bencana terjadi. </p> 
     <p> Kecepatan dan ketepatan dalam penanggulangan bencana sangatlah krusial untuk menjamin keberhasilan prosesnya. Untuk mengurangi semua kerentanan fisik dan sosial ekonomi, kesiapsiagaan bencana menjadi pendekatan penting.</p>
 """
