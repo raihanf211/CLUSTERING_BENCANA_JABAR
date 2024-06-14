@@ -207,7 +207,7 @@ def ahc_page():
             st.table(selected_row)
             
             # Graphs
-        col1, col2, col3, col4= st.columns(4)
+        col1, col2, col3, col4= st.columns(3)
         with col1:
             with st.container(border=True):
                 # Bar chart
@@ -224,19 +224,6 @@ def ahc_page():
                 # Assuming 'LATITUDE' and 'LONGITUDE' are the columns you want to use for the scatter plot
                 scatter_fig = px.scatter(st.session_state.df_clustered, x='LATITUDE', y='LONGITUDE', color='cluster', title='Scatter Plot')
                 st.plotly_chart(scatter_fig, use_container_width=True)
-
-        with col4:
-            st.write("Dendrogram")
-            # Generate dendrogram
-            linkage_matrix = linkage(st.session_state.scaled_features, method=linkage_method)
-            plt.figure(figsize=(10, 7))
-            dendrogram(linkage_matrix)
-            plt.xlabel('Indeks Data')
-            plt.ylabel('Jarak')
-            st.pyplot(plt)
-           
-
-
 
         with st.expander('Informasi', expanded=True):
             st.write('''
