@@ -16,7 +16,7 @@ html_content = f"""
         margin-bottom: 0px;
     }}
     html {{
-        margin-top: 0px;
+        margin-top: 20px;
         margin-bottom: 0px;
         border: 1px solid #de3f53;
         padding: 0px 4px;
