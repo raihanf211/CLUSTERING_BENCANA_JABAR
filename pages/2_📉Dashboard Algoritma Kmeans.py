@@ -144,7 +144,7 @@ X = df[kolom_numerik]
 X.fillna(X.mean(), inplace=True)
 
 # Terapkan klasterisasi KMeans
-kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans = KMeans(n_clusters=2, random_state=42)
 df['Cluster'] = kmeans.fit_predict(X)
 
 
