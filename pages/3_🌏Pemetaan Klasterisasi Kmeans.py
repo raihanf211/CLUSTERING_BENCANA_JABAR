@@ -148,7 +148,6 @@ def display_clustering_summary(df_clustered, num_clusters):
 def kmeans_page():
     st.header("KMeans Clustering Page", anchor='center')
 
-    st.latex(r"SSE = \sum_{i=1}^{k} \sum_{j=1}^{n} ||x_{ij} - c_i||^2")
 
     # Sidebar: Choose the number of clusters
     num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=3)
