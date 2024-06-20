@@ -150,7 +150,7 @@ def kmeans_page():
 
 
     # Sidebar: Choose the number of clusters
-    num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=3)
+    num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=2)
 
     # Load data from the home page
     data_from_homepage = load_data('DATA_JABAR.csv')  # Replace with your actual data file path
