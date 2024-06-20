@@ -326,8 +326,8 @@ with c1:
                         labels={'CCC': 'Cophenetic Correlation Coefficient', 'Metode': 'Metode Clustering'},
                         color='Metode',
                         color_discrete_map={
-                            'Single': 'red',
-                            'Complete': 'green',
+                            'Single': 'green',
+                            'Complete': 'red',
                             'Average': 'blue'
                             
                         })
@@ -341,8 +341,8 @@ with c2:
                     labels={'value': 'Silhouette Score', 'variable': 'Metode'},
                     title='Silhouette Score untuk Berbagai Jumlah Cluster',
                     color_discrete_map={
-                        'Single Linkage': 'red',
-                        'Complete Linkage': 'green',
+                        'Single Linkage': 'green',
+                        'Complete Linkage': 'red',
                         'Average Linkage': 'blue'
                         
                     })
