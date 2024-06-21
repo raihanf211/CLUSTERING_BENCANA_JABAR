@@ -211,6 +211,7 @@ def ahc_page():
         with col1:
             with st.container(border=True):
                 # Bar chart
+                st.write("Histogram Cluster:")
                 st.bar_chart(df_clustered.groupby('cluster').size(), use_container_width=True)
         with col2:
             with st.container(border=True):
