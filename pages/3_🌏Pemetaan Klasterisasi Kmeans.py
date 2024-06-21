@@ -261,7 +261,7 @@ def kmeans_page():
                 - Skor mendekati -1 menunjukkan bahwa objek salah terklasifikasi.
                 - **Jumlah Optimal Klaster**: Cari puncak atau titik tinggi dalam plot Skor Siluet untuk mengidentifikasi jumlah optimal klaster. Skor yang lebih tinggi menunjukkan pemisahan dan koherensi klaster yang lebih baik.
                 - **Penggunaan**: Gunakan Skor Siluet untuk mengevaluasi kualitas algoritma pengelompokan Anda dan menentukan jumlah klaster yang sesuai untuk dataset Anda.
-                - **Sumber Data**: [Sumber Data](link_ke_sumber_data_anda).
+                - **Sumber Data**: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](https://barata.jabarprov.go.id/).
                 ''')
 
 # Run the Streamlit app
