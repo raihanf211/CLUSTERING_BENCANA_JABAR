@@ -226,16 +226,17 @@ def ahc_page():
                 scatter_fig = px.scatter(st.session_state.df_clustered, x='LATITUDE', y='LONGITUDE', color='cluster', title='Scatter Plot')
                 st.plotly_chart(scatter_fig, use_container_width=True)
 
-        with st.expander('Informasi', expanded=True):
-            st.info('''
-            - :orange[**Area Prioritas Berdasarkan Tingkat Rawan Bencana**]: Area dengan tingkat rawan bencana tertinggi untuk tahun yang dipilih.
-            - :orange[**Perubahan Kejadian Bencana yang Signifikan**]: Area dengan peningkatan atau penurunan kejadian bencana terbesar dari tahun sebelumnya.
-            - :information_source: **Rata-rata Kejadian Bencana:** Rata-rata jumlah kejadian bencana untuk tahun yang dipilih.
-            - :information_source: **Rata-rata Kejadian Bencana (Area Prioritas):** Rata-rata jumlah kejadian bencana di area prioritas.
-            - :information_source: **Modus Kejadian Bencana (Area Prioritas):** Modus jumlah kejadian bencana di area prioritas.
-            - :bar_chart: **Visualisasi Kejadian Bencana:** Peta korelasi dan peta panas menampilkan total kejadian bencana di berbagai area.
-            - :chart_with_upwards_trend: **Tren Kejadian Bencana:** Grafik menampilkan tren kenaikan/penurunan kejadian bencana, serta area prioritas dengan tingkat rawan bencana tertinggi dan terendah, serta perubahan kejadian bencana yang signifikan.
-            ''')
+            with st.expander('Informasi', expanded=True):
+                st.info('''
+                - Data: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](http://barata.jabarprov.go.id/).
+                - :orange[**Area Prioritas Berdasarkan Tingkat Rawan Bencana**]: Area dengan tingkat rawan bencana tertinggi untuk tahun yang dipilih.
+                - :orange[**Perubahan Kejadian Bencana yang Signifikan**]: Area dengan peningkatan atau penurunan kejadian bencana terbesar dari tahun sebelumnya.
+                - :information_source: **Rata-rata Kejadian Bencana:** Rata-rata jumlah kejadian bencana untuk tahun yang dipilih.
+                - :information_source: **Rata-rata Kejadian Bencana (Area Prioritas):** Rata-rata jumlah kejadian bencana di area prioritas.
+                - :information_source: **Modus Kejadian Bencana (Area Prioritas):** Modus jumlah kejadian bencana di area prioritas.
+                - :bar_chart: **Visualisasi Kejadian Bencana:** Peta korelasi dan peta panas menampilkan total kejadian bencana di berbagai area.
+                - :chart_with_upwards_trend: **Tren Kejadian Bencana:** Grafik menampilkan tren kenaikan/penurunan kejadian bencana, serta area prioritas dengan tingkat rawan bencana tertinggi dan terendah, serta perubahan kejadian bencana yang signifikan.
+                ''')
 
     with tab3:
         col = st.columns((5, 1.5), gap='medium')
