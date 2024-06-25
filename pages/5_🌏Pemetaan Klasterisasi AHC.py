@@ -226,7 +226,7 @@ def ahc_page():
                 scatter_fig = px.scatter(st.session_state.df_clustered, x='LATITUDE', y='LONGITUDE', color='cluster', title='Scatter Plot')
                 st.plotly_chart(scatter_fig, use_container_width=True)
 
-           with st.expander('Informasi', expanded=True):
+            with st.expander('Informasi', expanded=True):
                 st.info('''
                 - Data: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](http://barata.jabarprov.go.id/).
                 - :orange[**Area Prioritas Berdasarkan Tingkat Rawan Bencana**]: Area dengan tingkat rawan bencana tertinggi untuk tahun yang dipilih.
