@@ -219,15 +219,15 @@ def ahc_page():
                 st.write("Cluster Distribution:")
                 st.plotly_chart(px.pie(df_clustered, names='cluster', title='Cluster Distribution'), use_container_width=True)
 
-        with col3:
+         with col3:
             with st.container(border=True):
                 st.write("Scatter Plot:")
                 # Assuming 'LATITUDE' and 'LONGITUDE' are the columns you want to use for the scatter plot
                 scatter_fig = px.scatter(st.session_state.df_clustered, x='LATITUDE', y='LONGITUDE', color='cluster', title='Scatter Plot')
                 st.plotly_chart(scatter_fig, use_container_width=True)
 
-            with st.expander('Informasi', expanded=True):
-                st.write('''
+         with st.expander('Informasi', expanded=True):
+                st.info('''
                 - Data: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](http://barata.jabarprov.go.id/).
                 - :orange[**Area Prioritas Berdasarkan Tingkat Rawan Bencana**]: Area dengan tingkat rawan bencana tertinggi untuk tahun yang dipilih.
                 - :orange[**Perubahan Kejadian Bencana yang Signifikan**]: Area dengan peningkatan atau penurunan kejadian bencana terbesar dari tahun sebelumnya.
