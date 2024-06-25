@@ -219,7 +219,7 @@ def ahc_page():
                 st.write("Cluster Distribution:")
                 st.plotly_chart(px.pie(df_clustered, names='cluster', title='Cluster Distribution'), use_container_width=True)
 
-         with col3:
+        with col3:
              with st.container(border=True):
                 st.write("Scatter Plot:")
                 # Assuming 'LATITUDE' and 'LONGITUDE' are the columns you want to use for the scatter plot
