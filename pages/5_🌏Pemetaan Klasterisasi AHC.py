@@ -211,7 +211,7 @@ def ahc_page():
         with col1:
             with st.container(border=True):
                 # Bar chart
-                st.write("Histogram Cluster:")
+                st.write("Cluster Bart Chart:")
                 st.bar_chart(df_clustered.groupby('cluster').size(), use_container_width=True)
         with col2:
             with st.container(border=True):
@@ -227,7 +227,7 @@ def ahc_page():
                 st.plotly_chart(scatter_fig, use_container_width=True)
 
         with st.expander('Informasi', expanded=True):
-            st.info('''
+            st.write('''
                 - Data: [BARATA BADAN PENANGGULANGAN BENCANA DAERAH PROVINSI JAWA BARAT](http://barata.jabarprov.go.id/).
                 - :orange[**Area Prioritas Berdasarkan Tingkat Rawan Bencana**]: Area dengan tingkat rawan bencana tertinggi untuk tahun yang dipilih.
                 - :orange[**Perubahan Kejadian Bencana yang Signifikan**]: Area dengan peningkatan atau penurunan kejadian bencana terbesar dari tahun sebelumnya.
