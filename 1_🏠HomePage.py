@@ -9,7 +9,7 @@ import altair as alt
 
 # Set page configuration
 st.set_page_config(
-    page_title="Analisis Clustering Kepadatan Penduduk",
+    page_title="Analisis Clustering Bencana Alam Tanah Longsor",
     layout="wide",  # Set layout to wide for full-width content
     initial_sidebar_state="collapsed",  # Collapse the sidebar by default
 )
